@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+
+.form-wrapper {
+    margin: 25px;
+}
+.form-wrapper h3 {
+    font-family: 'Fira Sans';
+    font-size: 2em;  
+    margin: 15px 0px;
+}
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+.auth-form+button {
+    margin-top: 5px;
+    float: right;
+}
+.form-wrapper {
+    max-width: 400px;
+}
+.auth-form label {
+    border-bottom: 1px dotted #ccc;
+    color: #ff4282;
+}
+.auth-form input {
+    text-align: center;
+}
