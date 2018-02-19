@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Promise } from 'q';
 
 @Injectable()
 export class FireAuthService {
+  authState;
 
   constructor(public afAuth: AngularFireAuth) {
   }
@@ -19,8 +19,8 @@ export class FireAuthService {
   signOut() {
     return this.afAuth.auth.signOut();
   }
-
-  checkIfLogged(nextOrObserver) {
-    return this.afAuth.auth.onAuthStateChanged(nextOrObserver);
+  
+  checkIfLogged() {
+    return this.afAuth.authState;
   }
 }

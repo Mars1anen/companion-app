@@ -1,30 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import url('https://fonts.googleapis.com/css?family=Lato|Fira+Sans');
 
 .form-wrapper {
-    margin: 25px;
+    margin: 25px auto;
+    position: relative;
+    top: 50px;
+    border: 5px solid #ffdcd2;
+    padding: 30px 60px;
+    border-radius: 20px;
 }
 .form-wrapper h3 {
+    text-align: center;
     font-family: 'Fira Sans';
-    font-size: 2em;  
-    margin: 15px 0px;
+    font-size: 3em;  
+    margin: 15px 0px 30px 0;
+    color: #2196f3;
 }
 .auth-form {
     display: flex;
     flex-direction: column;
 }
-.auth-form+button {
-    margin-top: 5px;
-    float: right;
+.mat-input-underline {
+    background-color: #ffdcd2;
+}
+.auth-form button {
+    width: 40%;
+    margin: 25px auto;
+}
+.auth-form button:hover {
+    background-color: #900c40;
 }
 .form-wrapper {
     max-width: 400px;
 }
 .auth-form label {
-    border-bottom: 1px dotted #ccc;
     color: #ff4282;
 }
 .auth-form input {
+    color: #464646;
     text-align: center;
 }
