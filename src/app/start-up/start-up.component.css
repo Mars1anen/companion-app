@@ -1,0 +1,42 @@
+* {
+    text-align: center;
+}
+
+body {
+    margin: 10px 80px;
+}
+
+.mh {
+    font: bold 3em Lato;
+    position: relative;
+    top: 70px;
+    margin-bottom: 80px;
+    color:  #FF4716;
+}
+
+#startup-body {
+    position: relative;
+    top: 85px;
+}
+.action-prompt {    
+    font: italic 1.2em 'Fira sans';
+    color: #c7c7c7;
+    margin-bottom: 75px;
+}
+
+.btn-pill {
+    display: block;
+    margin: 40px auto;
+    font-size: 16px;
+    border: 1px solid #fbfbfb;
+    border-radius: 18px;
+    padding: 10px 10px;
+    color: white;
+    background-color: #2196f3;
+}
+.btn-pill:hover {
+    background-color: #283593;
+    cursor: pointer;
+    transition: padding 0.2s ease-out; 
+    padding: 10px 20px; 
+}
