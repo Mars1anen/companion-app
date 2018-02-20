@@ -1,0 +1,22 @@
+mat-form-field {
+    width: 100%;
+}
+mat-form-field label {
+    color: #4a4a4a;
+    font-size: 1.3em;
+    font-family: Cuprum;
+    font-weight: 600;
+}
+mat-form-field input {
+    margin-top: 50px;
+    color: #c6c6c6;
+    font-size: 1.2em;
+    text-align: center;
+    color: #2d2525;
+}
+button { 
+    float: right;
+    margin-top: 20px;
+    font-size: 15px;
+    font-family: 'Fira Sans';
+}

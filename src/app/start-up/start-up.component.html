@@ -1,7 +1,7 @@
 <h1 class="mh">Welcome to Companion</h1>
 <div id="startup-body" *ngIf="userLoggedIn === true">
   <p class="action-prompt">Do you want to continue working using your last logged account?</p>
-  <button class="btn-pill">Yes, continue as <em>User</em>.</button>
+  <button routerLink="/home/{{user.id}}" class="btn-pill">Yes, continue as <em>{{user.name}}</em>.</button>
   <button (click)="changeUser()" class="btn-pill">No, I want to login as different user.</button>
 </div>
 <div id="startup-body" *ngIf="userLoggedIn === false">

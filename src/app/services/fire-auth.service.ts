@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 
+export interface User {
+  id: string;
+  email: string;
+  name?: string;
+}
+
 @Injectable()
 export class FireAuthService {
   authState;

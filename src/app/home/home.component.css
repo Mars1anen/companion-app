@@ -1,0 +1,121 @@
+.container {
+    margin: 0 auto;
+    height: 100vh;
+    width: 1000px;    
+    /*background-image: linear-gradient(180deg, white, #FFE5F6);*/
+    font-family: Lato;
+}
+#toolbar {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+#controls {
+    text-align: right;
+    width: 120px;
+    margin-top: 63px;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccccccba;
+    vertical-align: bottom;
+    height: 40px;
+}
+#navbar {
+    width: calc(100% - 250px - 120px);
+    border-bottom: 1px solid #ccc;
+}
+#greeter {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: Lato;
+    padding-left: 3.3%;
+    color: #FF4716;
+}
+#username {
+    margin-left: 4px;
+}
+.accounts-panel {
+    padding: 2px 18px;
+    text-align: left;
+}
+.account-btn {
+    padding: 3px 13px;
+    font-size: 17px;
+    border-radius: 18px;
+    border: 1px solid #ffcdb5;
+    margin-right: 5px;
+    background-color: white;
+    color: #100f0f;
+    cursor: pointer;
+}
+.account-btn:not(.active-tab):hover {
+    border: 1px solid transparent;
+    background-color: #f79235;
+    color: white;
+}
+.active-tab { 
+    border: 1px solid transparent;
+    background-color: #283593;
+    color: white;
+}
+#total {
+    width: 250px;
+    margin: 0;
+    text-align: center;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    font-size: 32px;
+    font-weight: 700;
+}
+/*#incomes {
+}
+#outcomes {
+}*/
+.items {
+    min-height: 200px;
+}
+table {
+    text-align: center;
+    font-family: 'Fira Sans';  
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+table th {
+    font-family: Cuprum;  
+    font-size: 1.2em;
+    text-align: left;
+}
+table tr {
+    border-bottom: 10px solid #fff;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    color: #808080;
+    font-size: 15px;
+}
+table th:nth-of-type(1) {
+    width: 600px;
+    padding-left: 120px;
+}
+table th:nth-of-type(2) {
+    width: 400px;
+    padding-left: 100px;
+}
+.glyphicon {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding-right: 20px;
+    padding-top: 3px;
+}
+.glyphicon .material-icons {
+    font-size: 29px;
+    opacity: 0.5;
+}
+.glyphicon .material-icons:hover {
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(45deg);
+    opacity: 1;
+}
+.glyphicon:focus {
+    outline: none;
+}

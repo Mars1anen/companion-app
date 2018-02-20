@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FireAuthService } from '../fire-auth.service';
+import { FireAuthService } from '../services/fire-auth.service';
 
 @Component({
   selector: 'sign-in',

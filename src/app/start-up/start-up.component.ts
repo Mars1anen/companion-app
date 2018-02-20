@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FireAuthService } from '../fire-auth.service';
+import { FireAuthService, User } from '../services/fire-auth.service';
 import { Router } from '@angular/router';
 import 'rxjs/Rx';
 
@@ -10,7 +10,7 @@ import 'rxjs/Rx';
 })
 export class StartUpComponent implements OnInit {
   userLoggedIn: boolean;
-  userId: string;
+  user: User;
 
   constructor(
     private auth: FireAuthService,
@@ -18,10 +18,16 @@ export class StartUpComponent implements OnInit {
 
   ngOnInit() {
     this.auth.checkIfLogged()
-      .subscribe(resp => {
-        if (resp !== null) this.userLoggedIn = true;
-        else this.userLoggedIn = false;
-        console.log('Firebase responded with ' + this.userLoggedIn);
+      .subscribe(response => {
+        if (response !== null) {
+          let user: User = {
+            id: response.uid,
+            email: response.email,
+            name: response.displayName || 'Anonymous'
+          };
+          this.userLoggedIn = true;
+          this.user = user;
+        } else this.userLoggedIn = false;
       });
   }
 
