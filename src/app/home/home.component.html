@@ -7,7 +7,7 @@
     <div id="navbar">
       <p id="greeter">Welcome, <span id="username">{{userName}}!</span></p>
       <div *ngIf="deleteMode !== true" class="accounts-panel">
-        <button @normalMode [ngClass]="{'active-tab': selectedTab == i}" class="account-btn" (click)="selectTab(i)" *ngFor="let account of accounts; index as i">{{account.name}}</button>
+        <button @normalMode [ngClass]="{'active-tab': selectedTab == account.id}" class="account-btn" (click)="selectTab(account.id)" *ngFor="let account of accounts; index as i">{{account.name}}</button>
       </div>
       <div *ngIf="deleteMode === true" class="accounts-panel">
         <button @deleteMode class="account-btn delete-me" (click)="deleteTab(account.id)" *ngFor="let account of accounts; index as i">{{account.name}}<mat-icon aria-hidden="true"><i class="material-icons">clear</i></mat-icon></button>
@@ -19,22 +19,34 @@
   </div>
   <div id="items">
     <div id="incomes" class="items">
+      <div class="table-heading">
+          <div class="th-buttons">
+              <button (click)="createItem(true)" class="glyphicon"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
+          </div>
+          <div class="h2">Доходы</div>
+        </div>
       <table>
         <thead>
           <th>Название</th><th>Сумма</th>
         </thead>
         <tbody>
-          <tr *ngFor="let item of items.incomes"><td>{{item.name}}</td><td>{{item.amount}}</td></tr>
+          <tr @itemEnter *ngFor="let item of items.incomes"><td>{{item.name}}</td><td>{{item.amount}}</td></tr>
         </tbody>
       </table>
     </div>
     <div id="expenses" class="items">
+      <div class="table-heading">
+        <div class="th-buttons">
+            <button (click)="createItem(false)" class="glyphicon"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
+        </div>
+        <div class="h2">Расходы</div>
+      </div>
       <table>
           <thead>
             <th>Название</th><th>Сумма</th>
           </thead>
           <tbody>
-            <tr *ngFor="let item of items.expenses"><td>{{item.name}}</td><td>{{item.amount}}</td></tr>
+            <tr @itemEnter *ngFor="let item of items.expenses"><td>{{item.name}}</td><td>{{item.amount}}</td></tr>
           </tbody>
         </table>
     </div>

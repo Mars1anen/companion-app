@@ -1,0 +1,11 @@
+<h3 class="modal-header">Добавить элемент</h3>
+<button (click)="dismissDialog()" class="modal-dismiss-btn"><mat-icon aria-hidden="true"><i class="material-icons">clear</i></mat-icon></button>
+<mat-form-field class="form-group">
+    <label for="itemName">Введите описание</label>
+    <input matInput ngModel name="itemName" type="text" #name>
+</mat-form-field>
+<mat-form-field class="form-group">
+    <label for="itemAmount">Введите cумму</label>
+    <input matInput ngModel name="itemAmount" type="text" #amount>
+</mat-form-field>
+<button mat-raised-button (click)="createItem(name, amount)" color="primary">Подтвердить</button>

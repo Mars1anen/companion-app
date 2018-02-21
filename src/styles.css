@@ -52,4 +52,35 @@
     border-top: 20px solid #ccc;
     border-bottom: 20px solid #ccc;
     overflow: hidden;
+    position: relative;
+}
+.modal-header {
+    color: #d84617;
+    margin: 10px auto;
+    font: bold 29px 'Fira Sans';
+    text-align: center;
+}
+.modal-dismiss-btn {
+    position: absolute;
+    top: -10px;
+    right: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.modal-dismiss-btn:hover {
+    transition: top 0.3s ease-out;
+    top: -8px;    
+    box-shadow: 2px 2px 0 #ccc;
+}
+.modal-dismiss-btn i:hover {
+    transition: font-size 0.2s ease-out;
+    font-size: 25px;
+}
+.modal-dismiss-btn:active {
+    transition: background-color 0.2s;
+    background-color: #f5f5f5;
+}
+.modal-dismiss-btn:focus {
+    outline: none;
 }

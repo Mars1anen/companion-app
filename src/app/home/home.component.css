@@ -106,6 +106,23 @@ button.muted i {
 .items {
     min-height: 200px;
 }
+.table-heading {
+    display: flex;
+    border-bottom: 1px solid #cccccc94;
+}
+.table-heading .h2 {
+    text-align: center;
+    font: bold 32px Cuprum;
+    width: calc(100% - 120px);
+    padding-right: 100px;
+}
+.table-heading .th-buttons {
+    width: 120px;
+}
+.table-heading .th-buttons button {
+    position: relative;
+    left: 16px;
+}
 table {
     text-align: center;
     font-family: 'Fira Sans';  

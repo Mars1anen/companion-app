@@ -22,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogCreateAccountComponent } from './modals/dialog-create-account/dialog-create-account.component';
+import { DialogCreateItemComponent } from './modals/dialog-create-item/dialog-create-item.component';
 
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     SignInComponent,
     StartUpComponent,
     HomeComponent,
-    DialogCreateAccountComponent
+    DialogCreateAccountComponent,
+    DialogCreateItemComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,6 @@ const appRoutes: Routes = [
   ],
   providers: [AngularFirestore, FireAuthService, FirestoreService, AuthGuard],
   bootstrap: [AppComponent],
-  entryComponents: [DialogCreateAccountComponent]
+  entryComponents: [DialogCreateAccountComponent, DialogCreateItemComponent]
 })
 export class AppModule { }

@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material';
 import { DialogCreateAccountComponent } from '../modals/dialog-create-account/dialog-create-account.component'
 import { Subscription } from 'rxjs';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { DialogCreateItemComponent } from '../modals/dialog-create-item/dialog-create-item.component';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,15 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
           animate(300)
       ])
     ]),
+    trigger('itemEnter', [
+      transition(':enter', [
+          style({ 
+            opacity: '0',
+            transform: 'translate(-400px)'
+         }),
+          animate(800)
+      ])
+    ])
   ]
 })
 
@@ -72,7 +82,7 @@ export class HomeComponent implements OnInit {
   createAccount(): void {
     let dialogRef = this.dialog.open(DialogCreateAccountComponent, {
       width: '500px',
-      height: '300px',
+      height: '350px',
       panelClass:"createModalDialog",
       data: { userId: this.userId }
     });
@@ -96,6 +106,18 @@ export class HomeComponent implements OnInit {
         this.items['incomes'] = resp.filter(filter(true));
         this.items['expenses'] = resp.filter(filter(false));
       })
+  }
+
+  createItem(boolean):void {
+    let dialogRef = this.dialog.open(DialogCreateItemComponent, {
+      width: '500px',
+      height: '500px',
+      panelClass:"createModalDialog",
+      data: { 
+        userId: this.userId,
+        parentId: this.selectedTab,
+        income: boolean }
+    });
   }
 
   intoDelete() {

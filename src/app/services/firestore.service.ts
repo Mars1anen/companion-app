@@ -62,4 +62,29 @@ export class FirestoreService {
   deleteAccount(uid, index) {
     this.db.doc('users/'+uid).collection('accounts').doc(index.toString()).delete();
   }
+
+  createItem(uid, parentId, name, amount, isIncome) {
+    let obs = this.db.doc('users/'+uid).valueChanges();
+    let subscription = obs.subscribe((data: any) => {
+      let oldAccountIndex = data.counters.accounts;
+      let newIndex = data.counters.items;
+      let itemsRef = this.db.doc('users/'+uid).collection('items');
+      itemsRef.doc(newIndex.toString()).set({
+        parentId: parentId,
+        name: name,
+        amount: parseInt(amount, 10),
+        income: isIncome
+    })
+      .then(fulfill => {
+        subscription.unsubscribe();
+        newIndex += 1;
+        this.db.doc('users/'+uid).update({
+          counters: {
+            accounts: oldAccountIndex,
+            items: newIndex
+          }
+        })
+      });
+    })
+  }
 }
