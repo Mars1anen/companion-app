@@ -1,15 +1,16 @@
 <div class="container">
   <div id="toolbar">
     <div id="controls">
-        <button class="glyphicon" (click)="createAccount()" aria-label="add_account"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
-      <button class="glyphicon" aria-label="remove_account"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button>
+      <button [ngClass]="{'muted': deleteMode === true}" class="glyphicon" (click)="createAccount()" aria-label="add_account"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
+      <button [ngClass]="{'active': deleteMode === true}" class="glyphicon" (click)="intoDelete()" aria-label="remove_account"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button>
     </div>
     <div id="navbar">
       <p id="greeter">Welcome, <span id="username">{{userName}}!</span></p>
-      <div class="accounts-panel">
-        <button [ngClass]="{'active-tab': selectedTab == i}" class="account-btn" *ngFor="let account of accounts; index as i">{{account.name}}</button>
-        <button class="account-btn">Кнопка</button>
-        <button class="account-btn">Другая</button>
+      <div *ngIf="deleteMode !== true" class="accounts-panel">
+        <button @normalMode [ngClass]="{'active-tab': selectedTab == i}" class="account-btn" (click)="selectTab(i)" *ngFor="let account of accounts; index as i">{{account.name}}</button>
+      </div>
+      <div *ngIf="deleteMode === true" class="accounts-panel">
+        <button @deleteMode class="account-btn delete-me" (click)="deleteTab(account.id)" *ngFor="let account of accounts; index as i">{{account.name}}<mat-icon aria-hidden="true"><i class="material-icons">clear</i></mat-icon></button>
       </div>
     </div>
     <div id="total">
@@ -23,17 +24,17 @@
           <th>Название</th><th>Сумма</th>
         </thead>
         <tbody>
-          <tr *ngFor="let item of items"><td>{{item.name}}</td><td>{{item.amount}}</td></tr>
+          <tr *ngFor="let item of items.incomes"><td>{{item.name}}</td><td>{{item.amount}}</td></tr>
         </tbody>
       </table>
     </div>
-    <div id="outcomes" class="items">
+    <div id="expenses" class="items">
       <table>
           <thead>
             <th>Название</th><th>Сумма</th>
           </thead>
           <tbody>
-            <tr *ngFor="let item of items"><td>{{item.name}}</td><td>{{item.amount}}</td></tr>
+            <tr *ngFor="let item of items.expenses"><td>{{item.name}}</td><td>{{item.amount}}</td></tr>
           </tbody>
         </table>
     </div>

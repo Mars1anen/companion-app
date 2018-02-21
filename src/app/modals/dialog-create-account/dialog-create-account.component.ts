@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material';
+import { FirestoreService } from '../../services/firestore.service';
 
 @Component({
   selector: 'dialog-create-account',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogCreateAccountComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+              private storage: FirestoreService) { }
 
   ngOnInit() {
   }
-
+  
+  createAccount(name) {
+    let userId = this.data.userId;
+    this.storage.createAccount(userId, name.value);
+  }
 }

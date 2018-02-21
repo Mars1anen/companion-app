@@ -38,24 +38,60 @@
     text-align: left;
 }
 .account-btn {
+    transition: background-color 0.4s;
     padding: 3px 13px;
     font-size: 17px;
     border-radius: 18px;
     border: 1px solid #ffcdb5;
     margin-right: 5px;
     background-color: white;
-    color: #100f0f;
+    color: #808080;
     cursor: pointer;
 }
-.account-btn:not(.active-tab):hover {
+.account-btn:not(.active-tab):not(.delete-me):hover {
     border: 1px solid transparent;
     background-color: #f79235;
     color: white;
 }
 .active-tab { 
+    transition: background-color 0.4s;
     border: 1px solid transparent;
     background-color: #283593;
     color: white;
+}
+button.delete-me {
+    border-color: transparent;
+    position: relative;
+    background: #ff2121;
+    padding: 3px 20px 3px 15px;
+    color: white;
+}
+button.delete-me mat-icon {   
+    position: absolute; 
+    top: -8px;
+    right: 0px;
+}
+button.delete-me i {
+    font-size: 13px;
+    color: #313131;
+    opacity: 0.8;
+    font-weight: bold;
+}
+button.delete-me:hover {
+    background-color: transparent !important;
+    color: black !important;
+}
+button.delete-me:active {
+    transition: opacity 0.5s;
+    opacity: 0.2;
+}
+button.active .material-icons {
+    color: #ff2121;
+    opacity: 1 !important;
+}
+button.muted i {
+    transition: opacity 0.4s;
+    opacity: 0.1 !important;
 }
 #total {
     width: 250px;
@@ -67,10 +103,6 @@
     font-size: 32px;
     font-weight: 700;
 }
-/*#incomes {
-}
-#outcomes {
-}*/
 .items {
     min-height: 200px;
 }
@@ -116,6 +148,6 @@ table th:nth-of-type(2) {
     transform: rotate(45deg);
     opacity: 1;
 }
-.glyphicon:focus {
+.glyphicon:focus, .account-btn:focus {
     outline: none;
 }
