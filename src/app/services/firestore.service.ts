@@ -25,22 +25,29 @@ export class FirestoreService {
 
   createNewUser(uid, username, email) {
     let newDoc = {
-      accounts: [],
       email: email,
-      items: [],
       name: username,
-      notes: []
+      counters: {
+        accounts: 1,
+        items: 0
+      }
     }
     this.usersCollection.doc(uid).set(newDoc)
       .then(fulfill => {
         alert('new account was successfulle created in database');
       });
+    this.usersCollection.doc(uid).collection('accounts').doc('0').set({
+      id: 0,
+      name: 'Основной',
+      total: 0
+    });
   }
   
   createAccount(uid, name) {
     let obs = this.db.doc('users/'+uid).valueChanges();
     let subscription = obs.subscribe((data: any) => {
         let newIndex = data.counters.accounts;
+        let oldItemIndex = data.counters.items;
         let accountsRef = this.db.doc('users/'+uid).collection('accounts');
         accountsRef.doc(newIndex.toString()).set({
           id: newIndex,
@@ -52,7 +59,8 @@ export class FirestoreService {
           newIndex += 1;
           this.db.doc('users/'+uid).update({
             counters: {
-              accounts: newIndex
+              accounts: newIndex,
+              items: oldItemIndex
             }
           })
         });
@@ -68,6 +76,11 @@ export class FirestoreService {
     let subscription = obs.subscribe((data: any) => {
       let oldAccountIndex = data.counters.accounts;
       let newIndex = data.counters.items;
+      if (newIndex === 0) { //create collection if there is none
+        this.usersCollection.doc(uid).collection('items').doc('0').set({
+          name: 'Placeholder'
+        });
+      } 
       let itemsRef = this.db.doc('users/'+uid).collection('items');
       itemsRef.doc(newIndex.toString()).set({
         parentId: parentId,

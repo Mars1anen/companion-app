@@ -9,6 +9,17 @@ import { Subscription } from 'rxjs';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DialogCreateItemComponent } from '../modals/dialog-create-item/dialog-create-item.component';
 
+interface Item {
+  name: string,
+  income: boolean,
+  amount: number,
+  parentId: number
+}
+interface Items extends Array<{}> {
+  incomes?: Array<Item>,
+  expenses?: Array<Item>
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -42,7 +53,7 @@ export class HomeComponent implements OnInit {
   userId: string;
   userName: string;
   accounts;
-  items = [];
+  items: Items = [];
   itemsSub: Subscription;
   selectedTab = 0;
   deleteMode = false;
@@ -62,19 +73,21 @@ export class HomeComponent implements OnInit {
             if (resp.name) this.userName = resp.name;
             else {
               this.accounts = resp;
+              this.selectedTab = resp[0].id;
+              this.itemsSub = this.storage.getItemsForView(this.userId, this.selectedTab)
+                .subscribe((resp: any) => {
+                  let filter = function(bool) {
+                    return function(obj) {
+                      if (obj.income === bool) return true;
+                      else return false;
+                    }
+                  };
+                  this.items['incomes'] = resp.filter(filter(true));
+                  this.items['expenses'] = resp.filter(filter(false));
+                })
             }
           })
-          this.itemsSub = this.storage.getItemsForView(this.userId, this.selectedTab)
-          .subscribe((resp: any) => {
-            let filter = function(bool) {
-              return function(obj) {
-                if (obj.income === bool) return true;
-                else return false;
-              }
-            };
-            this.items['incomes'] = resp.filter(filter(true));
-            this.items['expenses'] = resp.filter(filter(false));
-          })
+          
       });
 
   }
@@ -122,5 +135,13 @@ export class HomeComponent implements OnInit {
 
   intoDelete() {
     this.deleteMode = !this.deleteMode;
+  }
+
+  countUpTotal() {
+    let sum = 0;
+    this.items.incomes.forEach(obj => sum += obj.amount);
+    this.items.expenses.forEach(obj => sum -= obj.amount);
+    console.log(sum);
+    return sum;
   }
 }

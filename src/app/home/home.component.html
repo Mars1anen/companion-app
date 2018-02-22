@@ -10,11 +10,11 @@
         <button @normalMode [ngClass]="{'active-tab': selectedTab == account.id}" class="account-btn" (click)="selectTab(account.id)" *ngFor="let account of accounts; index as i">{{account.name}}</button>
       </div>
       <div *ngIf="deleteMode === true" class="accounts-panel">
-        <button @deleteMode class="account-btn delete-me" (click)="deleteTab(account.id)" *ngFor="let account of accounts; index as i">{{account.name}}<mat-icon aria-hidden="true"><i class="material-icons">clear</i></mat-icon></button>
+        <button @deleteMode class="account-btn delete-me" (click)="deleteTab(account.id); intoDelete()" *ngFor="let account of accounts; index as i">{{account.name}}<mat-icon aria-hidden="true"><i class="material-icons">clear</i></mat-icon></button>
       </div>
     </div>
     <div id="total">
-      <p>0</p>
+      <p>{{selectedTab}}</p>
     </div>
   </div>
   <div id="items">
@@ -52,3 +52,4 @@
     </div>
   </div> <!-- Items -->
 </div>
+<button (click)="countUpTotal()"></button>
