@@ -18,11 +18,22 @@ export class SignUpComponent {
 
   register(form) {
     let email = form.value.email, password = form.value.password, name = form.value.username;
-    this.auth.signUp(email, password)
-      .then(newUserData => {
-        alert('New account was successfully created!');
-        this.storage.createNewUser(newUserData.uid, name, email);
-      });
-      
+    let uniqueness: boolean;
+    let subscription = this.storage.returnUserDataByName(name)
+      .subscribe(res => {
+        subscription.unsubscribe();
+        console.log(res);
+        if (res.length > 0) {
+          uniqueness = false;
+          alert('Username already in use!');
+        } else {
+          uniqueness = true;
+          this.auth.signUp(email, password)
+            .then(newUserData => {
+              alert('New account was successfully created!');
+              this.storage.createNewUser(newUserData.uid, name, email);
+            });
+        }
+      }); 
   }
 }

@@ -2,16 +2,12 @@
   <h3>Sign-in</h3>
   <form #f="ngForm" class="auth-form">
     <mat-form-field class="form-group">
-      <label for="password">Password:</label>
-      <input ngModel matInput name="password" type="text">
-    </mat-form-field>
-    <mat-form-field class="form-group">
-      <label for="c_password">Confirm Password:</label>
-      <input ngModel matInput name="c_password" type="text">
-    </mat-form-field>
-    <mat-form-field class="form-group">
       <label for="email">Email:</label>
       <input ngModel matInput name="email" type="text">
+    </mat-form-field>
+    <mat-form-field class="form-group">
+      <label for="password">Password:</label>
+      <input ngModel matInput name="password" type="text">
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="logIn(f)">Sign-in</button>
   </form>

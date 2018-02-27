@@ -47,11 +47,28 @@
     background-color: white;
     color: #808080;
     cursor: pointer;
+    box-sizing: border-box;
 }
-.account-btn:not(.active-tab):not(.delete-me):hover {
+.account-btn:not(.active-tab):not(.delete-me):not(.active-immune):hover {
     border: 1px solid transparent;
     background-color: #f79235;
     color: white;
+}
+.account-btn.immune {
+    transition-property: color, border;
+    transition-duration: 0.5s;
+    color: #808080;
+    border: transparent;
+}
+.account-btn.active-immune {
+    transition-property: color, border;
+    transition-duration: 0.5s;
+    color: white;
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+}
+.active-immune {
+    border: 1px solid black;
 }
 .active-tab { 
     transition: background-color 0.4s;

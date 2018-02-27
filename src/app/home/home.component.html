@@ -7,6 +7,7 @@
     <div id="navbar">
       <p id="greeter">Welcome, <span id="username">{{userName}}!</span></p>
       <div *ngIf="deleteMode !== true" class="accounts-panel">
+        <button @normalMode [ngClass]="{'active-immune': selectedTab == 'all', 'immune': selectedTab != 'all'}" class="account-btn" (click)="selectTab('all')">Основной</button>
         <button @normalMode [ngClass]="{'active-tab': selectedTab == account.id}" class="account-btn" (click)="selectTab(account.id)" *ngFor="let account of accounts; index as i">{{account.name}}</button>
       </div>
       <div *ngIf="deleteMode === true" class="accounts-panel">
@@ -14,39 +15,39 @@
       </div>
     </div>
     <div id="total">
-      <p>{{selectedTab}}</p>
+      <p>{{total}}</p>
     </div>
   </div>
   <div id="items">
     <div id="incomes" class="items">
       <div class="table-heading">
           <div class="th-buttons">
-              <button (click)="createItem(true)" class="glyphicon"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
+              <button @hide *ngIf="selectedTab != 'all'" (click)="createItem(true)" class="glyphicon"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
           </div>
           <div class="h2">Доходы</div>
         </div>
       <table>
         <thead>
-          <th>Название</th><th>Сумма</th>
+          <th>Название</th><th>Дата</th><th>Сумма</th>
         </thead>
         <tbody>
-          <tr @itemEnter *ngFor="let item of items.incomes"><td>{{item.name}}</td><td>{{item.amount}}</td></tr>
+          <tr @itemEnter *ngFor="let item of items.incomes"><td>{{item.name}}</td><td>{{item.date}}</td><td>{{item.amount}}</td></tr>
         </tbody>
       </table>
     </div>
     <div id="expenses" class="items">
       <div class="table-heading">
         <div class="th-buttons">
-            <button (click)="createItem(false)" class="glyphicon"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
+            <button @hide *ngIf="selectedTab != 'all'" (click)="createItem(false)" class="glyphicon"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
         </div>
         <div class="h2">Расходы</div>
       </div>
       <table>
           <thead>
-            <th>Название</th><th>Сумма</th>
+            <th>Название</th><th>Дата</th><th>Сумма</th>
           </thead>
           <tbody>
-            <tr @itemEnter *ngFor="let item of items.expenses"><td>{{item.name}}</td><td>{{item.amount}}</td></tr>
+            <tr @itemEnter *ngFor="let item of items.expenses"><td>{{item.name}}</td><td>{{item.date}}</td><td>{{item.amount}}</td></tr>
           </tbody>
         </table>
     </div>

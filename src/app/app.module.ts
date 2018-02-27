@@ -27,7 +27,7 @@ import { DialogCreateItemComponent } from './modals/dialog-create-item/dialog-cr
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'home/:id', component: HomeComponent, canActivate: [AuthGuard]  },
+  { path: ':username', component: HomeComponent, canActivate: [AuthGuard]  },
   { path: '', component: StartUpComponent }
 ];
 

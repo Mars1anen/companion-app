@@ -19,7 +19,7 @@ export class FireAuthService {
   }
 
   signIn(email, password) {
-    return this.afAuth.auth.signInAndRetrieveDataWithEmailAndPassword(email, password);
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
   signOut() {

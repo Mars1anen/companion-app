@@ -13,13 +13,12 @@ export class DialogCreateItemComponent {
     public dialogRef: MatDialogRef<DialogCreateItemComponent>,
     private storage: FirestoreService) { }
 
-  createItem(name, amount) {
-    let userId = this.data.userId;
-    let parentId = this.data.parentId;
+  createItem(name, amount, date) {
+    let accountId = this.data.accountId;
     let isIncome = this.data.income;
-    console.log(isIncome);
+    let parsedAmount = parseInt(amount.value, 10);
 
-    this.storage.createItem(userId, parentId, name.value, amount.value, isIncome);
+    this.storage.createItem(accountId, isIncome, name.value, parsedAmount, date.value);
   }
 
   dismissDialog():void {

@@ -5,7 +5,11 @@
     <input matInput ngModel name="itemName" type="text" #name>
 </mat-form-field>
 <mat-form-field class="form-group">
+    <label for="date">Введите дату</label>
+    <input matInput ngModel name="date" type="text" #date>
+</mat-form-field>
+<mat-form-field class="form-group">
     <label for="itemAmount">Введите cумму</label>
     <input matInput ngModel name="itemAmount" type="text" #amount>
 </mat-form-field>
-<button mat-raised-button (click)="createItem(name, amount)" color="primary">Подтвердить</button>
+<button mat-raised-button (click)="createItem(name, amount, date)" color="primary">Подтвердить</button>

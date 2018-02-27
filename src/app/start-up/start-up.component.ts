@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FireAuthService, User } from '../services/fire-auth.service';
 import { Router } from '@angular/router';
 import 'rxjs/Rx';
+import { FirestoreService } from '../services/firestore.service';
 
 @Component({
   selector: 'start-up',
@@ -14,19 +15,24 @@ export class StartUpComponent implements OnInit {
 
   constructor(
     private auth: FireAuthService,
-    private router: Router) { }
+    private router: Router,
+    private storage: FirestoreService) { }
 
   ngOnInit() {
     this.auth.checkIfLogged()
       .subscribe(response => {
         if (response !== null) {
-          let user: User = {
-            id: response.uid,
-            email: response.email,
-            name: response.displayName || 'Anonymous'
-          };
-          this.userLoggedIn = true;
-          this.user = user;
+          this.storage.returnUserDataByEmail(response.email)
+            .subscribe((getName: any) => {
+              this.userLoggedIn = true;
+              let user: User = {
+                id: response.uid,
+                email: response.email,
+                name: getName.username
+              };
+              this.user = user;
+              console.log(user);
+            }); 
         } else this.userLoggedIn = false;
       });
   }
