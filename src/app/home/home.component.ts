@@ -79,16 +79,22 @@ export class HomeComponent implements OnInit {
         this.userName = paramObj.username;
         this.accountsSub = this.storage.getAccountsForView(this.userName)
           .subscribe((resp: any) => {
+            if (resp.length === 0) {
+              this.accounts = [];
+              this.selectTab('all');
+            } else {        
+              this.accounts = resp;
+              this.selectTab(resp[0].id);
+            }
             console.log(resp);
-            this.accounts = resp;
-            this.selectTab(resp[0].id);
           }) 
       });
   }
 
   createAccount(): void {
     this.accountsSub.unsubscribe();
-    this.itemsSub.unsubscribe();
+    if (this.itemsSub) this.itemsSub.unsubscribe();
+
     let dialogRef = this.dialog.open(DialogCreateAccountComponent, {
       width: '500px',
       height: '350px',
@@ -145,12 +151,17 @@ export class HomeComponent implements OnInit {
   createItem(boolean):void {
     let dialogRef = this.dialog.open(DialogCreateItemComponent, {
       width: '500px',
-      height: '650px',
+      height: '560px',
       panelClass:"createModalDialog",
       data: {
         accountId: this.selectedTab,
         income: boolean }
     });
+  }
+
+  deleteItem(item) {
+    this.storage.deleteItem(item.accountId, item.id);
+    if (this.selectedTab === 'all') this.selectTab('all');
   }
 
   intoDelete() {

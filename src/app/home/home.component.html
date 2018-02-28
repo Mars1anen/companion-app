@@ -28,10 +28,10 @@
         </div>
       <table>
         <thead>
-          <th>Название</th><th>Дата</th><th>Сумма</th>
+          <th><span id="delete-label">Удалить</span></th><th>Название</th><th>Дата</th><th>Сумма</th>
         </thead>
         <tbody>
-          <tr @itemEnter *ngFor="let item of items.incomes"><td>{{item.name}}</td><td>{{item.date}}</td><td>{{item.amount}}</td></tr>
+          <tr @itemEnter *ngFor="let item of items.incomes" ShowDeleteBtn><td><button class="item-remove-btn" (click)="deleteItem(item)"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button></td><td>{{item.name}}</td><td>{{item.date}}</td><td>{{item.amount}}</td></tr>
         </tbody>
       </table>
     </div>
@@ -44,10 +44,10 @@
       </div>
       <table>
           <thead>
-            <th>Название</th><th>Дата</th><th>Сумма</th>
+            <th><span id="delete-label">Удалить</span></th><th>Название</th><th>Дата</th><th>Сумма</th>
           </thead>
           <tbody>
-            <tr @itemEnter *ngFor="let item of items.expenses"><td>{{item.name}}</td><td>{{item.date}}</td><td>{{item.amount}}</td></tr>
+            <tr @itemEnter *ngFor="let item of items.expenses" ShowDeleteBtn><td><button class="item-remove-btn" (click)="deleteItem(item)"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button></td><td>{{item.name}}</td><td>{{item.date}}</td><td>{{item.amount}}</td></tr>
           </tbody>
         </table>
     </div>

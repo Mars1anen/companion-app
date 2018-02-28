@@ -2,17 +2,19 @@ mat-form-field {
     width: 100%;
 }
 mat-form-field label {
-    color: #4a4a4a;
+    color: white;
     font-size: 1.3em;
     font-family: Cuprum;
     font-weight: 600;
 }
 mat-form-field input {
     margin-top: 50px;
-    color: #c6c6c6;
     font-size: 1.2em;
     text-align: center;
-    color: #2d2525;
+    color: #2a2a2a;
+}
+mat-form-field input:not(.datepicker-input) {
+    width: calc(100% - 33px);
 }
 button { 
     float: right;

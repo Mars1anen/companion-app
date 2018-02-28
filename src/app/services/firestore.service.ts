@@ -4,6 +4,7 @@ import { User } from '@firebase/auth-types';
 import { Observable } from 'rxjs/Observable';
 import { mergeAll, concatAll, flatMap } from 'rxjs/operators';
 import { Items } from '../home/home.component';
+import { SnackBarService } from './snack-bar.service';
 
 
 @Injectable()
@@ -11,7 +12,10 @@ export class FirestoreService {
   usersCollection: AngularFirestoreCollection<User>;
   accountsCollection: AngularFirestoreCollection<any>;
 
-  constructor(private db: AngularFirestore) { 
+  constructor(
+      private db: AngularFirestore,
+      private snackbar: SnackBarService
+    ) { 
     this.usersCollection = this.db.collection('users');
     this.accountsCollection = this.db.collection('accounts');
   }
@@ -86,10 +90,27 @@ export class FirestoreService {
       name: name,
       amount: amount,
       date: date,
-      income: isIncome
+      income: isIncome,
+      accountId: accountId
     };
     this.accountsCollection.doc(accountId).collection('items').add(newDoc)
-      .then(result => console.log(result)); // Remove console.log
+      .then(result => {
+        this.accountsCollection.doc(accountId).collection('items').doc(result.id).update({
+          id: result.id
+        })
+      });
+  }
+  
+  deleteItem(accountId, itemId) {
+    this.accountsCollection.doc(accountId).collection('items').doc(itemId).delete()
+      .then(
+        result => {
+          this.snackbar.openSnackBar('Item was deleted!');
+      },
+        error => {
+          this.snackbar.openSnackBar('The error occurred');
+        }
+    )
   }
 
   filterForDisplay(itemsArray): Items { // refactored

@@ -1,0 +1,24 @@
+.popup-container {
+    font-family: Lato;
+    font-size: 17px;
+    text-align: center;
+}
+.snackbar-text {
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+}
+.snackbar-btn {
+    background: none;
+    border: none;
+    color: #2a2a2a;
+    float: right;
+    margin-left: 21px;
+    padding: 2px 3px;
+    font-size: 17px;
+    cursor: pointer;
+}
+.snackbar-btn:hover {
+    transition: border-bottom 0.2s;
+    border-bottom: 2px solid #2a2a2a8c;
+}
