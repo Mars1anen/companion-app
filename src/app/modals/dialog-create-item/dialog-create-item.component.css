@@ -25,3 +25,31 @@ button {
 mat-form-field~button:hover {
     background-color: #8d1543;
 }
+.half-screen {
+    width: 48%;
+}
+.half-screen:nth-of-type(2) {
+    float: left;
+}
+.half-screen:nth-of-type(2) {
+    float: right;
+}
+.mat-option {
+    background-color: white;
+    color: #2a2a2a;
+    padding: 0 10px;
+    border-bottom: 1px dotted #dedede;
+}
+.marker-label {
+    margin-left: 10px;
+}
+.marker-preview {
+    display: block;
+    min-width: 16px;
+    min-height: 16px;
+    border-radius: 3px;
+    float: right;
+    position: relative;
+    top: 16px;
+    right: 20px;
+}

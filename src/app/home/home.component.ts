@@ -151,7 +151,7 @@ export class HomeComponent implements OnInit {
   createItem(boolean):void {
     let dialogRef = this.dialog.open(DialogCreateItemComponent, {
       width: '500px',
-      height: '560px',
+      height: '500px',
       panelClass:"createModalDialog",
       data: {
         accountId: this.selectedTab,

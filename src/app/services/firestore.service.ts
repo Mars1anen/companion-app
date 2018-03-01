@@ -85,7 +85,7 @@ export class FirestoreService {
       })
   }
 
-  createItem(accountId, isIncome, name, amount, date) {
+  createItem(accountId, isIncome, name, amount, date, marker?) {
     let newDoc = {
       name: name,
       amount: amount,
@@ -93,6 +93,7 @@ export class FirestoreService {
       income: isIncome,
       accountId: accountId
     };
+    if (marker) newDoc['marker'] = marker;
     this.accountsCollection.doc(accountId).collection('items').add(newDoc)
       .then(result => {
         this.accountsCollection.doc(accountId).collection('items').doc(result.id).update({

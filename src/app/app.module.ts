@@ -15,7 +15,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { FireAuthService } from './services/fire-auth.service';
 import { FirestoreService } from './services/firestore.service';
 import { environment } from '../environments/environment';
-import {MatFormFieldModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS, MatSelectModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { HomeComponent } from './home/home.component';
@@ -26,6 +26,8 @@ import { DialogCreateItemComponent } from './modals/dialog-create-item/dialog-cr
 import { ShowDeleteBtnDirective } from './directives/show-delete-btn.directive';
 import { SnackBarService } from './services/snack-bar.service';
 import { SnackBarComponent } from './modals/snack-bar/snack-bar.component';
+import { AppDateAdapter, APP_DATE_FORMATS } from './date.adapter';
+import { HorizontalScrollDirective } from './directives/horizontal-scroll.directive';
 
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
     DialogCreateAccountComponent,
     DialogCreateItemComponent,
     ShowDeleteBtnDirective,
-    SnackBarComponent
+    SnackBarComponent,
+    HorizontalScrollDirective
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -66,7 +70,18 @@ const appRoutes: Routes = [
       //{ enableTracing: true } // Console.log route changes
     )
   ],
-  providers: [AngularFirestore, FireAuthService, FirestoreService, SnackBarService, AuthGuard],
+  providers: [
+    AngularFirestore, 
+    FireAuthService, 
+    FirestoreService, 
+    SnackBarService, 
+    AuthGuard, 
+    {
+    provide: DateAdapter, useClass: AppDateAdapter
+    },
+    {
+    provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    }],
   bootstrap: [AppComponent],
   entryComponents: [DialogCreateAccountComponent, DialogCreateItemComponent, SnackBarComponent]
 })

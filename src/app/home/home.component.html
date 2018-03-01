@@ -6,13 +6,15 @@
     </div>
     <div id="navbar">
       <p id="greeter">Welcome, <span id="username">{{userName}}!</span></p>
-      <div *ngIf="deleteMode !== true" class="accounts-panel">
-        <button @normalMode [ngClass]="{'active-immune': selectedTab == 'all', 'immune': selectedTab != 'all'}" class="account-btn" (click)="selectTab('all')">Основной</button>
-        <button @normalMode [ngClass]="{'active-tab': selectedTab == account.id}" class="account-btn" (click)="selectTab(account.id)" *ngFor="let account of accounts; index as i">{{account.name}}</button>
-      </div>
-      <div *ngIf="deleteMode === true" class="accounts-panel">
-        <button @deleteMode class="account-btn delete-me" (click)="deleteTab(account.id); intoDelete()" *ngFor="let account of accounts; index as i">{{account.name}}<mat-icon aria-hidden="true"><i class="material-icons">clear</i></mat-icon></button>
-      </div>
+      <!--<div *HorizontalScroll>-->
+        <div *ngIf="deleteMode !== true" class="accounts-panel">
+          <button @normalMode [ngClass]="{'active-immune': selectedTab == 'all', 'immune': selectedTab != 'all'}" class="account-btn" (click)="selectTab('all')">Основной</button>
+          <button @normalMode [ngClass]="{'active-tab': selectedTab == account.id}" class="account-btn" (click)="selectTab(account.id)" *ngFor="let account of accounts; index as i">{{account.name}}</button>
+        </div>
+        <div *ngIf="deleteMode === true" class="accounts-panel">
+          <button @deleteMode class="account-btn delete-me" (click)="deleteTab(account.id); intoDelete()" *ngFor="let account of accounts; index as i">{{account.name}}<mat-icon aria-hidden="true"><i class="material-icons">clear</i></mat-icon></button>
+        </div>
+      <!--</div>-->
     </div>
     <div id="total">
       <p>{{total}}</p>
@@ -28,10 +30,10 @@
         </div>
       <table>
         <thead>
-          <th><span id="delete-label">Удалить</span></th><th>Название</th><th>Дата</th><th>Сумма</th>
+          <th></th><th><span id="delete-label">Удалить</span></th><th>Название</th><th>Дата</th><th>Сумма</th>
         </thead>
         <tbody>
-          <tr @itemEnter *ngFor="let item of items.incomes" ShowDeleteBtn><td><button class="item-remove-btn" (click)="deleteItem(item)"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button></td><td>{{item.name}}</td><td>{{item.date}}</td><td>{{item.amount}}</td></tr>
+          <tr @itemEnter *ngFor="let item of items.incomes" ShowDeleteBtn><td><div class="item-marker" [ngClass]="item.marker + '-marker' "></div></td><td><button class="item-remove-btn" (click)="deleteItem(item)"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button></td><td>{{item.name}}</td><td>{{item.date}}</td><td>{{item.amount}}</td></tr>
         </tbody>
       </table>
     </div>
@@ -44,13 +46,12 @@
       </div>
       <table>
           <thead>
-            <th><span id="delete-label">Удалить</span></th><th>Название</th><th>Дата</th><th>Сумма</th>
+            <th></th><th><span id="delete-label">Удалить</span></th><th>Название</th><th>Дата</th><th>Сумма</th>
           </thead>
           <tbody>
-            <tr @itemEnter *ngFor="let item of items.expenses" ShowDeleteBtn><td><button class="item-remove-btn" (click)="deleteItem(item)"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button></td><td>{{item.name}}</td><td>{{item.date}}</td><td>{{item.amount}}</td></tr>
+            <tr @itemEnter *ngFor="let item of items.expenses" ShowDeleteBtn><td><div class="item-marker" [ngClass]="item.marker + '-marker' "></div></td><td><button class="item-remove-btn" (click)="deleteItem(item)"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button></td><td>{{item.name}}</td><td>{{item.date}}</td><td>{{item.amount}}</td></tr>
           </tbody>
         </table>
     </div>
   </div> <!-- Items -->
 </div>
-<button (click)="countUpTotal()"></button>

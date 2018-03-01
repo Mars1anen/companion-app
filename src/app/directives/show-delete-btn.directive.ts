@@ -9,10 +9,10 @@ export class ShowDeleteBtnDirective {
 
   @HostListener('mouseenter', ['$event'])
   onmouseenter(e) {
-    this.renderer.addClass(this.el.nativeElement.firstChild.firstChild, 'visible');
+    this.renderer.addClass(this.el.nativeElement.firstChild.nextSibling.firstChild, 'visible');
   }
   @HostListener('mouseleave', ['$event'])
   onmouseleave(e) {
-    this.renderer.removeClass(this.el.nativeElement.firstChild.firstChild, 'visible');
+    this.renderer.removeClass(this.el.nativeElement.firstChild.nextSibling.firstChild, 'visible');
   }
 }
