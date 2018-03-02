@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Input } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { FireAuthService } from '../services/fire-auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +8,7 @@ import { DialogCreateAccountComponent } from '../modals/dialog-create-account/di
 import { Subscription } from 'rxjs';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DialogCreateItemComponent } from '../modals/dialog-create-item/dialog-create-item.component';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 interface Item {
   name: string,
@@ -56,7 +56,7 @@ export interface Items extends Array<{}> {
   ]
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewChecked {
   userId: string;
   userName: string;
   accounts;
@@ -66,6 +66,9 @@ export class HomeComponent implements OnInit {
   selectedTab;
   deleteMode = false;
   total: number;
+  accOverflown: boolean = false;
+  sliderPosition = 0;
+  sliderPreviousPosition: number;
 
   constructor(
     private auth: FireAuthService,
@@ -89,6 +92,15 @@ export class HomeComponent implements OnInit {
             console.log(resp);
           }) 
       });
+  }
+
+  ngAfterViewChecked() {
+    window.setTimeout(() => {
+      let obs = Observable.defer(() => Observable.of(this.checkOverflow()));
+      obs.subscribe(result => {
+        this.accOverflown = result;
+      });
+    });
   }
 
   createAccount(): void {
@@ -173,5 +185,44 @@ export class HomeComponent implements OnInit {
     this.items.incomes.forEach(obj => sum += obj.amount);
     this.items.expenses.forEach(obj => sum -= obj.amount);
     this.total = sum;
+  }
+
+  checkOverflow() {
+    let parent = document.querySelector('#navbar').clientWidth;
+    let child = document.querySelector('.accounts-panel').scrollWidth;
+
+    if (child > parent) return true;
+    else return false;
+  }
+
+  sliderTriggered(evt) {
+    let origin = this.accounts;
+
+    if (this.sliderPreviousPosition === undefined) {
+      let steps = this.sliderPosition;
+      let toBeginning = origin.slice(steps);
+      origin.splice(steps);
+      let result = toBeginning.concat(origin);
+      this.accounts = result;
+      this.sliderPreviousPosition = this.sliderPosition;
+    } else {
+      let steps = this.sliderPosition - this.sliderPreviousPosition;
+      if (steps > 0) {
+        let steps = this.sliderPosition - this.sliderPreviousPosition;
+        let toBeginning = origin.slice(steps);
+        origin.splice(steps);
+        let result = toBeginning.concat(origin);
+        this.accounts = result;
+        this.sliderPreviousPosition = this.sliderPosition;
+      } else if (steps < 0) {
+        let stepsAbs = Math.abs(steps);
+        let actualSteps = origin.length - stepsAbs;
+        let toEnd = origin.slice(0, actualSteps);
+        origin.splice(0, actualSteps);
+        let result = origin.concat(toEnd);
+        this.accounts = result;
+        this.sliderPreviousPosition = this.sliderPosition;
+      }
+    }
   }
 }

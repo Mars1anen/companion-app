@@ -58,6 +58,7 @@ export class DialogCreateItemComponent {
     let parsedAmount = parseInt(amount.value, 10);
 
     this.storage.createItem(accountId, isIncome, name.value, parsedAmount, date.value, this.itemMarker);
+    this.dialogRef.close();
   }
 
   dismissDialog():void {

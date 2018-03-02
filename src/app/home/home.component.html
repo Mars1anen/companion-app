@@ -4,17 +4,19 @@
       <button [ngClass]="{'muted': deleteMode === true}" class="glyphicon" (click)="createAccount()" aria-label="add_account"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
       <button [ngClass]="{'active': deleteMode === true}" class="glyphicon" (click)="intoDelete()" aria-label="remove_account"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button>
     </div>
-    <div id="navbar">
+    <div id="navbar" #nav>
       <p id="greeter">Welcome, <span id="username">{{userName}}!</span></p>
-      <!--<div *HorizontalScroll>-->
-        <div *ngIf="deleteMode !== true" class="accounts-panel">
+        <div *ngIf="deleteMode !== true" class="accounts-panel" #panel1>
           <button @normalMode [ngClass]="{'active-immune': selectedTab == 'all', 'immune': selectedTab != 'all'}" class="account-btn" (click)="selectTab('all')">Основной</button>
           <button @normalMode [ngClass]="{'active-tab': selectedTab == account.id}" class="account-btn" (click)="selectTab(account.id)" *ngFor="let account of accounts; index as i">{{account.name}}</button>
         </div>
-        <div *ngIf="deleteMode === true" class="accounts-panel">
+        <div *ngIf="deleteMode === true" class="accounts-panel" #panel2>
           <button @deleteMode class="account-btn delete-me" (click)="deleteTab(account.id); intoDelete()" *ngFor="let account of accounts; index as i">{{account.name}}<mat-icon aria-hidden="true"><i class="material-icons">clear</i></mat-icon></button>
         </div>
-      <!--</div>-->
+        <div id="slider-container" *ngIf="accOverflown">
+          <mat-slider id="accounts-slider" [min]="0" [max]="accounts.length-1" [thumb-label]="true" [(ngModel)]="sliderPosition" (change)="sliderTriggered($event)">
+          </mat-slider>
+        </div>
     </div>
     <div id="total">
       <p>{{total}}</p>

@@ -15,7 +15,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { FireAuthService } from './services/fire-auth.service';
 import { FirestoreService } from './services/firestore.service';
 import { environment } from '../environments/environment';
-import {MatFormFieldModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS, MatSelectModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS, MatSelectModule, MatSliderModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { HomeComponent } from './home/home.component';
@@ -28,7 +28,6 @@ import { SnackBarService } from './services/snack-bar.service';
 import { SnackBarComponent } from './modals/snack-bar/snack-bar.component';
 import { AppDateAdapter, APP_DATE_FORMATS } from './date.adapter';
 import { HorizontalScrollDirective } from './directives/horizontal-scroll.directive';
-
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -60,6 +59,7 @@ const appRoutes: Routes = [
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    MatSliderModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,

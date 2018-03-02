@@ -137,3 +137,17 @@
 .mat-select-arrow {
     color: #909090 !important;
 }
+
+.mat-slider-wrapper { /* Slider bar when not filled */
+    background-color: #9e9e9e !important;
+    opacity: 0.6;
+}
+.mat-slider-track-fill {
+    background-color: #d36e2a !important;
+    opacity: 0.6;
+}
+.mat-slider-thumb {
+    background-color: #2196F3 !important;
+    opacity: 0.6;
+    border: none !important;
+}
