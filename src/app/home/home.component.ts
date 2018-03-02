@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, Input } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Input, ChangeDetectorRef } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { FireAuthService } from '../services/fire-auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   sliderPreviousPosition: number;
 
   constructor(
+    private changeDetector: ChangeDetectorRef,
     private auth: FireAuthService,
     private storage: FirestoreService,
     private route: ActivatedRoute,
@@ -95,12 +96,11 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    window.setTimeout(() => {
-      let obs = Observable.defer(() => Observable.of(this.checkOverflow()));
-      obs.subscribe(result => {
-        this.accOverflown = result;
-      });
+    let obs = Observable.defer(() => Observable.of(this.checkOverflow()));
+    obs.subscribe(result => {
+      this.accOverflown = result;
     });
+    this.changeDetector.detectChanges();
   }
 
   createAccount(): void {
