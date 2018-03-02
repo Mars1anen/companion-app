@@ -73,7 +73,7 @@
     cursor: pointer;
 }
 .modal-dismiss-btn mat-icon {
-    color: white;
+    color: #2a2a2a;
 }
 .modal-dismiss-btn:hover {
     transition: top 0.3s ease-out;

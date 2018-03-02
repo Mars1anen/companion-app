@@ -5,7 +5,7 @@ import { FirestoreService } from '../../services/firestore.service';
 interface Marker {
   name: string,
   color: string,
-  hex: string
+  hex?: string
 }
 
 @Component({
@@ -15,6 +15,10 @@ interface Marker {
 })
 export class DialogCreateItemComponent {
   markers: Marker[] = [
+    {
+      name: 'Без маркера',
+      color: 'none'
+    },
     {
       name: 'Красный',
       color: 'red',

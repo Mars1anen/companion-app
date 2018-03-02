@@ -33,7 +33,7 @@ export class FirestoreService {
   }
 
   getItemsForView(accountId) { // refactored
-    return this.accountsCollection.doc(accountId).collection('items').valueChanges();
+    return this.accountsCollection.doc(accountId).collection('items', ref => ref.orderBy('amount')).valueChanges();
   }
 
   getAllUserAccounts(username) { // refactored
@@ -93,7 +93,7 @@ export class FirestoreService {
       income: isIncome,
       accountId: accountId
     };
-    if (marker) newDoc['marker'] = marker;
+    if (marker && marker !== 'none') newDoc['marker'] = marker;
     this.accountsCollection.doc(accountId).collection('items').add(newDoc)
       .then(result => {
         this.accountsCollection.doc(accountId).collection('items').doc(result.id).update({
