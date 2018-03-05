@@ -28,6 +28,7 @@ import { SnackBarService } from './services/snack-bar.service';
 import { SnackBarComponent } from './modals/snack-bar/snack-bar.component';
 import { AppDateAdapter, APP_DATE_FORMATS } from './date.adapter';
 import { TimeToUnixService } from './services/time-to-unix.service';
+import { UnixToStringPipe } from './pipes/unix-to-string.pipe';
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     DialogCreateAccountComponent,
     DialogCreateItemComponent,
     ShowDeleteBtnDirective,
-    SnackBarComponent
+    SnackBarComponent,
+    UnixToStringPipe
   ],
   imports: [
     BrowserModule,
