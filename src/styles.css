@@ -46,7 +46,7 @@
     text-align: center;
 }
 .createModalDialog mat-dialog-container {
-    background-color: white;
+    background-color: #ffffff;
     border-left: 20px solid #ff4716c9;
     border-right: 20px solid #ff4716c9;
     border-top: 20px solid #ccc;
@@ -55,10 +55,14 @@
     position: relative;
 }
 .modal-header {
-    color: #d84617;
+    color: #f96536;
     margin: 10px auto;
     font: bold 29px 'Fira Sans';
     text-align: center;
+    margin-bottom: 25px;
+}
+.mat-form-field-label {
+    color: #2196F3;
 }
 .modal-dismiss-btn {
     position: absolute;
@@ -67,6 +71,9 @@
     background: transparent;
     border: none;
     cursor: pointer;
+}
+.modal-dismiss-btn mat-icon {
+    color: #2a2a2a;
 }
 .modal-dismiss-btn:hover {
     transition: top 0.3s ease-out;
@@ -83,4 +90,50 @@
 }
 .modal-dismiss-btn:focus {
     outline: none;
+}
+
+.cdk-overlay-pane:not(.createModalDialog):not(#cdk-overlay-1) {
+    position: absolute !important;
+    bottom: 30px !important;
+}
+.mat-snack-bar-container {
+    margin: auto !important;
+    width: 350px;
+    border-radius: 4px !important;
+    background: #e91e63b3;
+    color: #2a2a2a;
+}
+
+.mat-datepicker-content {
+    width: 300px;
+    background-color: #f3763a;
+}
+.mat-calendar-content th{
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+.mat-datepicker-toggle button {
+    font-size: 22px !important;
+    color: #909090;
+}
+.mat-datepicker-toggle button:hover {
+    background: #cccccc61;
+}
+.mat-datepicker-toggle button:active {
+    background: #cccccc25;
+}
+#cdk-overlay-1 {
+    min-width: 200px !important;
+    width: 250px;
+    bottom: -40px;
+    margin-left: 17px;
+}
+.mat-select-value {
+    color: #2a2a2a;
+}
+.mat-form-field-type-mat-input .mat-form-field-label::after {
+    content: '*';
+    color: red;
+}
+.mat-select-arrow {
+    color: #909090 !important;
 }

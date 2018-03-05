@@ -1,11 +1,21 @@
 <h3 class="modal-header">Добавить элемент</h3>
 <button (click)="dismissDialog()" class="modal-dismiss-btn"><mat-icon aria-hidden="true"><i class="material-icons">clear</i></mat-icon></button>
 <mat-form-field class="form-group">
-    <label for="itemName">Введите описание</label>
-    <input matInput ngModel name="itemName" type="text" #name>
+    <input matInput ngModel name="itemName" type="text" placeholder="Введите описание" #name>
 </mat-form-field>
-<mat-form-field class="form-group">
-    <label for="itemAmount">Введите cумму</label>
-    <input matInput ngModel name="itemAmount" type="text" #amount>
+<mat-form-field class="form-group half-screen"> 
+    <input matInput ngModel class="datepicker-input" name="date" type="text" [matDatepicker]="picker" placeholder="Выберите дату" #date>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
-<button mat-raised-button (click)="createItem(name, amount)" color="primary">Подтвердить</button>
+<mat-form-field class="form-group half-screen">
+    <input matInput ngModel type="number" name="itemAmount" type="text" placeholder="Введите cумму" #amount>
+</mat-form-field>
+<mat-form-field class="form-group half-screen">
+    <mat-select placeholder="Добавить маркер" [(value)]="itemMarker">
+      <mat-option *ngFor="let marker of markers" [value]="marker.color">
+        <span class="marker-label">{{ marker.name }}</span><div [style.background-color]="marker.hex" class="marker-preview"></div>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+<button mat-raised-button (click)="createItem(name, amount, date)" color="primary">Подтвердить</button>

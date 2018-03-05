@@ -14,8 +14,14 @@ export class DialogCreateAccountComponent {
               private storage: FirestoreService) { }
   
   createAccount(name) {
-    let userId = this.data.userId;
-    this.storage.createAccount(userId, name.value);
+    let userName = this.data.userName;
+    this.storage.createAccount(userName, name.value) 
+      .then(ref => {
+        this.storage.accountsCollection.doc(ref.id).update({
+          id: ref.id
+        });
+        this.dialogRef.close(ref.id);
+      }) ;
   }
 
   dismissDialog():void {
