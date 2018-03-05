@@ -13,9 +13,10 @@
         <div *ngIf="deleteMode === true" class="accounts-panel" #panel2>
           <button @deleteMode class="account-btn delete-me" (click)="deleteTab(account.id); intoDelete()" *ngFor="let account of accounts; index as i">{{account.name}}<mat-icon aria-hidden="true"><i class="material-icons">clear</i></mat-icon></button>
         </div>
-        <div id="slider-container" *ngIf="accOverflown">
-          <mat-slider id="accounts-slider" [min]="0" [max]="accounts.length-1" [thumb-label]="true" [(ngModel)]="sliderPosition" (change)="sliderTriggered($event)">
-          </mat-slider>
+        <div id="account-switches-container" *ngIf="accOverflown === true">
+          <span class="counter">Всего {{accounts.length}} кошельков</span>
+          <button (click)="selectBtn('previous')"><mat-icon><i class="material-icons">chevron_left</i></mat-icon></button>
+          <button (click)="selectBtn('next')"><mat-icon><i class="material-icons">chevron_right</i></mat-icon></button>
         </div>
     </div>
     <div id="total">

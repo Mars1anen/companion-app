@@ -33,7 +33,7 @@ export class FirestoreService {
   }
 
   getItemsForView(accountId) { // refactored
-    return this.accountsCollection.doc(accountId).collection('items', ref => ref.orderBy('amount')).valueChanges();
+    return this.accountsCollection.doc(accountId).collection('items', ref => ref.orderBy('date')).valueChanges();
   }
 
   getAllUserAccounts(username) { // refactored
@@ -43,7 +43,7 @@ export class FirestoreService {
   getAllItemsForThisUser(accountsArray) { // refactored
     let accountsCollection = this.accountsCollection;
     let containerObs = Observable.create(function(observer) {
-      accountsArray.forEach(account => observer.next(accountsCollection.doc(account.id).collection('items').valueChanges()));
+      accountsArray.forEach(account => observer.next(accountsCollection.doc(account.id).collection('items', ref => ref.orderBy('date')).valueChanges()));
     });
     containerObs = containerObs.flatMap(x => x).concatAll();
     return containerObs;
@@ -115,12 +115,16 @@ export class FirestoreService {
   }
 
   filterForDisplay(itemsArray): Items { // refactored
+    let sortingF = function(a, b) {
+      return parseInt(a.date, 10) - parseInt(b.date, 10);
+    }
     let f = function(bool) {
       return function(obj) {
         if (obj.income === bool) return true;
         else return false;
       }
     };
+    itemsArray.sort(sortingF);
     let processed = [];
     processed['incomes'] = itemsArray.filter(f(true));
     processed['expenses'] = itemsArray.filter(f(false));

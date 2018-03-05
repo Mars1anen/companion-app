@@ -189,40 +189,47 @@ export class HomeComponent implements OnInit, AfterViewChecked {
 
   checkOverflow() {
     let parent = document.querySelector('#navbar').clientWidth;
-    let child = document.querySelector('.accounts-panel').scrollWidth;
-
-    if (child > parent) return true;
-    else return false;
+    let children = document.querySelectorAll('.accounts-panel button');
+    let lastButton:any = children[children.length-1];
+    return (lastButton.offsetLeft + lastButton.offsetWidth) > parent;
   }
 
-  sliderTriggered(evt) {
-    let origin = this.accounts;
+  selectBtn(nextOrPrevious) {
+    let i = this.accounts.findIndex(element => {
+      return element.id === this.selectedTab;
+    });
+    let length = this.accounts.length;
+    let account;
 
-    if (this.sliderPreviousPosition === undefined) {
-      let steps = this.sliderPosition;
-      let toBeginning = origin.slice(steps);
-      origin.splice(steps);
-      let result = toBeginning.concat(origin);
-      this.accounts = result;
-      this.sliderPreviousPosition = this.sliderPosition;
-    } else {
-      let steps = this.sliderPosition - this.sliderPreviousPosition;
-      if (steps > 0) {
-        let steps = this.sliderPosition - this.sliderPreviousPosition;
-        let toBeginning = origin.slice(steps);
-        origin.splice(steps);
-        let result = toBeginning.concat(origin);
-        this.accounts = result;
-        this.sliderPreviousPosition = this.sliderPosition;
-      } else if (steps < 0) {
-        let stepsAbs = Math.abs(steps);
-        let actualSteps = origin.length - stepsAbs;
-        let toEnd = origin.slice(0, actualSteps);
-        origin.splice(0, actualSteps);
-        let result = origin.concat(toEnd);
-        this.accounts = result;
-        this.sliderPreviousPosition = this.sliderPosition;
+    if (nextOrPrevious === 'next') {
+      if (i < length - 1) {
+        this.selectTab(this.accounts[i+1].id);
+      } else {
+        this.selectTab(this.accounts[0].id);
       }
+      this.changeOrder('next');
+    } else {
+      if (i > 0) {
+        this.selectTab(this.accounts[i-1].id);
+      } else {
+        this.selectTab(this.accounts[length-1].id);
+      }
+      this.changeOrder('previous');  
     }
   }
+
+  changeOrder(nextOrPrevious) {
+    let toBeginning, toEnd, result, length = this.accounts.length;
+
+    if (nextOrPrevious === 'next') {
+      toBeginning = this.accounts.slice(1);
+      toEnd = this.accounts.slice(0, 1);
+    } else {
+      toBeginning = this.accounts.slice(length-1);
+      toEnd = this.accounts.slice(0, length-1);
+    }
+    toEnd.unshift(...toBeginning);
+    this.accounts = toEnd;
+  }
 }
+
