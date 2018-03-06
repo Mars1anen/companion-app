@@ -29,6 +29,7 @@ import { SnackBarComponent } from './modals/snack-bar/snack-bar.component';
 import { AppDateAdapter, APP_DATE_FORMATS } from './date.adapter';
 import { TimeToUnixService } from './services/time-to-unix.service';
 import { UnixToStringPipe } from './pipes/unix-to-string.pipe';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -47,7 +48,8 @@ const appRoutes: Routes = [
     DialogCreateItemComponent,
     ShowDeleteBtnDirective,
     SnackBarComponent,
-    UnixToStringPipe
+    UnixToStringPipe,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,7 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     RouterModule.forRoot(
       appRoutes,
-      //{ enableTracing: true } // Console.log route changes
+      { enableTracing: true } // Console.log route changes
     )
   ],
   providers: [

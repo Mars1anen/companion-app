@@ -1,8 +1,11 @@
 <div class="container">
   <div id="toolbar">
-    <div id="controls">
-      <button [ngClass]="{'muted': deleteMode === true}" class="glyphicon" (click)="createAccount()" aria-label="add_account"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
-      <button [ngClass]="{'active': deleteMode === true}" class="glyphicon" (click)="intoDelete()" aria-label="remove_account"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button>
+    <div id="sidebar">
+        <user-profile></user-profile>
+        <div id="controls">
+          <button [ngClass]="{'muted': deleteMode === true}" class="glyphicon" (click)="createAccount()" aria-label="add_account"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
+          <button [ngClass]="{'active': deleteMode === true}" class="glyphicon" (click)="intoDelete()" aria-label="remove_account"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button>
+        </div>
     </div>
     <div id="navbar" #nav>
       <p id="greeter">Welcome, <span id="username">{{userName}}!</span></p>
