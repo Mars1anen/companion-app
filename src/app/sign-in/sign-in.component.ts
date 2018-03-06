@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FireAuthService } from '../services/fire-auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FirestoreService } from '../services/firestore.service';
 
 @Component({
   selector: 'sign-in',
@@ -12,7 +13,8 @@ export class SignInComponent {
   constructor(
     private auth: FireAuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private storage: FirestoreService
   ) { }
 
   logIn(form) {
@@ -20,7 +22,14 @@ export class SignInComponent {
     this.auth.signIn(email, password)
       .then(success => {
         let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-        this.router.navigate([returnUrl || '/']);
+        if (returnUrl) {
+          this.router.navigate([returnUrl]);
+        } else {
+          this.storage.returnUserDataByEmail(success.email)
+            .subscribe((resp: any) => {
+              this.router.navigateByUrl('/'+ resp.username);
+            });
+        }
       });
   }
 }
