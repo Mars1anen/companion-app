@@ -110,10 +110,10 @@ export class FirestoreService {
     this.accountsCollection.doc(accountId).collection('items').doc(itemId).delete()
       .then(
         result => {
-          this.snackbar.openSnackBar('Item was deleted!');
+          this.snackbar.openSnackBar('Элемент удалён!');
       },
         error => {
-          this.snackbar.openSnackBar('The error occurred');
+          this.snackbar.openSnackBar('Произошла ошибка.');
         }
     )
   }

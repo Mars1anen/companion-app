@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
               this.selectTab('all');
             } else {        
               this.accounts = resp;
-              this.selectTab(resp[0].id);
+              this.selectTab('all');
             }
             console.log(resp);
           }) 

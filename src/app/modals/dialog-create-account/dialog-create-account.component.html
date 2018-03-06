@@ -1,6 +1,9 @@
 <h3 class="modal-header">Добавить кошелёк</h3>
 <button matTooltip="Отмена" (click)="dismissDialog()" class="modal-dismiss-btn"><mat-icon aria-hidden="true"><i class="material-icons">clear</i></mat-icon></button>
-<mat-form-field class="form-group">
-  <input matInput ngModel name="accountName" type="text" placeholder="Введите название кошелька" #name>
-</mat-form-field>
-<button mat-raised-button (click)="createAccount(name)" color="primary">Подтвердить</button>
+<form #f="ngForm">
+  <mat-form-field class="form-group">
+    <input required matInput ngModel name="accountName" type="text" placeholder="Введите название кошелька" #name>
+    <mat-error>Обязательное поле.</mat-error>
+  </mat-form-field>
+  <button mat-raised-button [disabled]="!f.valid" (click)="createAccount(name)" color="primary">Подтвердить</button>
+</form>

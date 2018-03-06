@@ -21,4 +21,8 @@ export class UserProfileComponent {
         this.router.navigateByUrl('');
       })
   }
+
+  accessMenu() {
+    this.router.navigateByUrl('');
+  }
 }
