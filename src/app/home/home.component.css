@@ -315,3 +315,7 @@ table th:nth-of-type(5) {
 #account-switches-container button:focus {
     outline: none;
 }
+::ng-deep .mat-tooltip {
+    background: #f3851ef1;
+    font-size: 11px;
+}
