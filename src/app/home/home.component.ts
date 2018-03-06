@@ -133,8 +133,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     this.storage.deleteAccount(index)
       .subscribe(resp => {
         if (index === this.selectedTab) {
-          this.selectTab('all');
-          console.log(this.accounts);      
+          this.selectTab('all');     
         }
       });
   }
@@ -143,14 +142,13 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     if (i === 'all') {
       this.selectedTab = 'all';   
       var container = [];
-      this.storage.getAllUserAccounts(this.userName) // Get array of Account observables
+      this.accountsSub = this.storage.getAllUserAccounts(this.userName) // Get array of Account observables
         .subscribe(accounts => { 
           this.storage.getAllItemsForThisUser(accounts) // Get items by searching each Account's id
             .subscribe(values => {
               container.push(values);
               this.items = this.storage.filterForDisplay(container);
               this.countUpTotal();
-              console.log(this.items.incomes);
             });
         });
     } else {
