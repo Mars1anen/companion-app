@@ -30,6 +30,8 @@ import { AppDateAdapter, APP_DATE_FORMATS } from './date.adapter';
 import { TimeToUnixService } from './services/time-to-unix.service';
 import { UnixToStringPipe } from './pipes/unix-to-string.pipe';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { BudgetComponent } from './budget/budget.component';
+import { ViewModesManagerService } from './services/view-modes-manager.service';
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -49,7 +51,8 @@ const appRoutes: Routes = [
     ShowDeleteBtnDirective,
     SnackBarComponent,
     UnixToStringPipe,
-    UserProfileComponent
+    UserProfileComponent,
+    BudgetComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ const appRoutes: Routes = [
   providers: [
     AngularFirestore, 
     FireAuthService, 
-    FirestoreService, 
+    FirestoreService,
+    ViewModesManagerService, 
     SnackBarService,
     TimeToUnixService, 
     AuthGuard, 

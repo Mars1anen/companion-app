@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DialogCreateItemComponent } from '../modals/dialog-create-item/dialog-create-item.component';
 import { Observable } from 'rxjs/Observable';
+import { ViewModes, ViewModesManagerService } from '../services/view-modes-manager.service';
 
 interface Item {
   name: string,
@@ -52,7 +53,7 @@ export interface Items extends Array<{}> {
           style({ opacity: '0.5' }),
           animate(600)
       ])
-    ]),
+    ])
   ]
 })
 
@@ -61,6 +62,8 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   userName: string;
   accounts;
   accountsSub: Subscription;
+  viewMode: ViewModes;
+
   items: Items = [];
   itemsSub: Subscription;
   selectedTab;
@@ -74,8 +77,15 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     private changeDetector: ChangeDetectorRef,
     private auth: FireAuthService,
     private storage: FirestoreService,
+    private vmm: ViewModesManagerService,
     private route: ActivatedRoute,
-    public dialog:MatDialog) { }
+    public dialog:MatDialog
+  ) { 
+      this.vmm.viewMode
+      .subscribe(vm => {
+        this.viewMode = vm;
+      });
+     }
 
   ngOnInit() {
     this.route.params

@@ -132,6 +132,19 @@ button.muted i {
     font-size: 32px;
     font-weight: 700;
 }
+#navbar.collapsed-total {
+    transition: width 1s;
+    width: calc(1000px - 121px);
+}
+#total.collapsed-total {
+    transition: transform 1s 0.3s;
+    transform: scaleX(0);
+    display: none;
+}
+#total.collapsed-total p {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
 .items {
     min-height: 200px;
 }

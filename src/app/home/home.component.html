@@ -7,7 +7,7 @@
           <button matTooltip="Удалить кошелёк" [ngClass]="{'active': deleteMode === true}" class="glyphicon" (click)="intoDelete()" aria-label="remove_account"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button>
         </div>
     </div>
-    <div id="navbar" #nav>
+    <div id="navbar" [ngClass]="{ 'collapsed-total': viewMode !== 1 }" #nav>
       <p id="greeter">Welcome, <span id="username">{{userName}}!</span></p>
         <div *ngIf="deleteMode !== true" class="accounts-panel" #panel1>
           <button @normalMode [ngClass]="{'active-immune': selectedTab == 'all', 'immune': selectedTab != 'all'}" class="account-btn" (click)="selectTab('all')">Основной</button>
@@ -22,42 +22,11 @@
           <button (click)="selectBtn('next')"><mat-icon><i class="material-icons">chevron_right</i></mat-icon></button>
         </div>
     </div>
-    <div id="total">
+    <div [ngClass]="{ 'collapsed-total': viewMode !== 1 }" id="total">
       <p>{{total}}</p>
     </div>
   </div>
-  <div id="items">
-    <div id="incomes" class="items">
-      <div class="table-heading">
-          <div class="th-buttons">
-              <button matTooltip="Добавить элемент" @hide *ngIf="selectedTab != 'all'" (click)="createItem(true)" class="glyphicon"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
-          </div>
-          <div class="h2">Доходы</div>
-        </div>
-      <table>
-        <thead>
-          <th></th><th><span id="delete-label">Удалить</span></th><th>Название</th><th>Дата</th><th>Сумма</th>
-        </thead>
-        <tbody>
-          <tr @itemEnter *ngFor="let item of items.incomes" ShowDeleteBtn><td><div class="item-marker" [ngClass]="item.marker + '-marker' "></div></td><td><button matTooltip="Удалить элемент" class="item-remove-btn" (click)="deleteItem(item)"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button></td><td>{{item.name}}</td><td>{{item.date | unixToString}}</td><td>{{item.amount}}</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div id="expenses" class="items">
-      <div class="table-heading">
-        <div class="th-buttons">
-            <button matTooltip="Добавить элемент" @hide *ngIf="selectedTab != 'all'" (click)="createItem(false)" class="glyphicon"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
-        </div>
-        <div class="h2">Расходы</div>
-      </div>
-      <table>
-          <thead>
-            <th></th><th><span id="delete-label">Удалить</span></th><th>Название</th><th>Дата</th><th>Сумма</th>
-          </thead>
-          <tbody>
-            <tr @itemEnter *ngFor="let item of items.expenses" ShowDeleteBtn><td><div class="item-marker" [ngClass]="item.marker + '-marker' "></div></td><td><button matTooltip="Удалить элемент" class="item-remove-btn" (click)="deleteItem(item)"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button></td><td>{{item.name}}</td><td>{{item.date | unixToString}}</td><td>{{item.amount}}</td></tr>
-          </tbody>
-        </table>
-    </div>
-  </div> <!-- Items -->
+  <div *ngIf="viewMode === 1">
+    <app-budget [selectedTab]="selectedTab"></app-budget>
+  </div>
 </div>
