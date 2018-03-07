@@ -132,7 +132,6 @@ export class FirestoreService {
     let processed = [];
     processed['incomes'] = itemsArray.filter(f(true));
     processed['expenses'] = itemsArray.filter(f(false));
-
     return processed;
   }
 }
