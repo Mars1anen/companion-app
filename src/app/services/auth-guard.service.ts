@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { FireAuthService } from '../services/fire-auth.service';
 import { Observable } from 'rxjs/Observable';
+import { query } from '@angular/animations';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -11,16 +12,14 @@ export class AuthGuard implements CanActivate {
     private auth: FireAuthService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let obs = Observable.create(observer => {
-      this.auth.checkIfLogged()
-        .subscribe(resp => {
-          if (resp !== null) observer.next(true);
+      return this.auth.checkIfLogged()
+        .map(resp => {
+          if (resp !== null) return true;
           else {
-            this.router.navigateByUrl('/start');
-            observer.next(false);
+            this.router.navigate(['/sign-in'], { queryParams: { 'returnUrl': route.params.username } });
+            alert('Looks like you have to sign-in first');
+            return false;
           }
-        })
-    });
-    return obs;
+        }).first();
   }
 }

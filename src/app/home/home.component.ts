@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
               this.selectTab('all');
             } else {        
               this.accounts = resp;
-              this.selectTab(resp[0].id);
+              this.selectTab('all');
             }
             console.log(resp);
           }) 
@@ -130,17 +130,19 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     });
     this.accountsSub.unsubscribe();
     this.accounts.splice(i, 1);
-    this.storage.deleteAccount(index);
-    if (index === this.selectedTab) {
-      this.selectTab('all');
-    }
+    this.storage.deleteAccount(index)
+      .subscribe(resp => {
+        if (index === this.selectedTab) {
+          this.selectTab('all');     
+        }
+      });
   }
 
   selectTab(i) {
     if (i === 'all') {
       this.selectedTab = 'all';   
       var container = [];
-      this.storage.getAllUserAccounts(this.userName) // Get array of Account observables
+      this.accountsSub = this.storage.getAllUserAccounts(this.userName) // Get array of Account observables
         .subscribe(accounts => { 
           this.storage.getAllItemsForThisUser(accounts) // Get items by searching each Account's id
             .subscribe(values => {

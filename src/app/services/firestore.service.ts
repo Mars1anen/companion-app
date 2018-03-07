@@ -56,7 +56,7 @@ export class FirestoreService {
     }
     this.usersCollection.doc(email).set(newDoc)
       .then(fulfill => {
-        alert('new account was successfulle created in database');
+        //
       });
   }
   
@@ -73,7 +73,8 @@ export class FirestoreService {
     let accountsRef = this.accountsCollection.doc(index.toString());
     let itemsColRef = accountsRef.collection('items');
 
-    itemsColRef.ref.get()
+    let notifier = Observable.create(observer => {
+      itemsColRef.ref.get()
       .then(ref => {
         let batch = this.db.firestore.batch();
         ref.docs.forEach(document => {
@@ -81,8 +82,11 @@ export class FirestoreService {
         });
         batch.commit().then(function() {
           accountsRef.delete();
+          observer.next('Completed');
         })
       })
+    });
+    return notifier;
   }
 
   createItem(accountId, isIncome, name, amount, date, marker?) {
@@ -106,10 +110,10 @@ export class FirestoreService {
     this.accountsCollection.doc(accountId).collection('items').doc(itemId).delete()
       .then(
         result => {
-          this.snackbar.openSnackBar('Item was deleted!');
+          this.snackbar.openSnackBar('Элемент удалён!');
       },
         error => {
-          this.snackbar.openSnackBar('The error occurred');
+          this.snackbar.openSnackBar('Произошла ошибка.');
         }
     )
   }

@@ -6,6 +6,10 @@
       <input ngModel matInput name="username" type="text">
     </mat-form-field>
     <mat-form-field class="form-group">
+      <label for="email">Email:</label>
+      <input ngModel matInput name="email" type="text">
+    </mat-form-field>
+    <mat-form-field class="form-group">
       <label for="password">Password:</label>
       <input ngModel matInput name="password" type="text">
     </mat-form-field>
@@ -13,11 +17,8 @@
       <label for="c_password">Confirm Password:</label>
       <input ngModel matInput name="c_password" type="text">
     </mat-form-field>
-    <mat-form-field class="form-group">
-      <label for="email">Email:</label>
-      <input ngModel matInput name="email" type="text">
-    </mat-form-field>
   <button mat-raised-button color="primary" (click)="register(f)">Sign-up</button>
   </form>
+  <p class="center"><a routerLink="/sign-in" class="app-link">Login as existing user.</a></p>
 </div>
 

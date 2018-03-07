@@ -15,7 +15,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { FireAuthService } from './services/fire-auth.service';
 import { FirestoreService } from './services/firestore.service';
 import { environment } from '../environments/environment';
-import {MatFormFieldModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS, MatSelectModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDatepickerModule, MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS, MatSelectModule, MatTooltipModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { HomeComponent } from './home/home.component';
@@ -29,6 +29,7 @@ import { SnackBarComponent } from './modals/snack-bar/snack-bar.component';
 import { AppDateAdapter, APP_DATE_FORMATS } from './date.adapter';
 import { TimeToUnixService } from './services/time-to-unix.service';
 import { UnixToStringPipe } from './pipes/unix-to-string.pipe';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -47,7 +48,8 @@ const appRoutes: Routes = [
     DialogCreateItemComponent,
     ShowDeleteBtnDirective,
     SnackBarComponent,
-    UnixToStringPipe
+    UnixToStringPipe,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,7 @@ const appRoutes: Routes = [
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
@@ -67,7 +70,7 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     RouterModule.forRoot(
       appRoutes,
-      //{ enableTracing: true } // Console.log route changes
+      { enableTracing: true } // Console.log route changes
     )
   ],
   providers: [

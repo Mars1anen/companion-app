@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FireAuthService } from '../services/fire-auth.service';
 import { FirestoreService } from '../services/firestore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sign-up',
@@ -13,8 +14,9 @@ export class SignUpComponent {
 
   constructor(
     private auth: FireAuthService,
-    private storage: FirestoreService) {
-  }
+    private storage: FirestoreService,
+    private router: Router
+  ) {}
 
   register(form) {
     let email = form.value.email, password = form.value.password, name = form.value.username;
@@ -30,8 +32,8 @@ export class SignUpComponent {
           uniqueness = true;
           this.auth.signUp(email, password)
             .then(newUserData => {
-              alert('New account was successfully created!');
               this.storage.createNewUser(newUserData.uid, name, email);
+              this.router.navigateByUrl('/' + name);
             });
         }
       }); 
