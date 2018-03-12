@@ -73,7 +73,7 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // Console.log route changes
+      //{ enableTracing: true } // Console.log route changes
     )
   ],
   providers: [

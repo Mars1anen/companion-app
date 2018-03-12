@@ -1,0 +1,107 @@
+
+.items {
+    min-height: 200px;
+}
+.table-heading {
+    display: flex;
+    border-bottom: 1px solid #cccccc94;
+}
+.table-heading .h2 {
+    text-align: center;
+    font: bold 32px Cuprum;
+    width: calc(100% - 120px);
+    padding-right: 100px;
+}
+.table-heading .th-buttons {
+    width: 120px;
+}
+.table-heading .th-buttons button {
+    position: relative;
+    left: 16px;
+}
+table {
+    text-align: center;
+    font-family: 'Fira Sans';  
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+table th {
+    font-family: Cuprum;  
+    font-size: 1.2em;
+    text-align: center;
+}
+table tr {
+    border-bottom: 10px solid #fff;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    color: #808080;
+    font-size: 15px;
+}
+#delete-label {
+    position: relative;
+    right: -5px;
+}
+table th:nth-of-type(1) {
+    width: 60px;
+}
+table th:nth-of-type(2) {
+    width: 50px;
+}
+table th:nth-of-type(3) {
+    width: 580px;
+}
+table th:nth-of-type(4) {
+    width: 160px;
+}
+table th:nth-of-type(5) {
+    width: 150px;
+}
+
+.glyphicon {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding-right: 20px;
+    padding-top: 3px;
+}
+.glyphicon .material-icons {
+    font-size: 29px;
+    opacity: 0.5;
+}
+.glyphicon .material-icons:hover {
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(45deg);
+    opacity: 1;
+}
+.glyphicon:focus, .account-btn:focus {
+    outline: none;
+}
+.item-remove-btn {
+    transition-property: opacity, visibility;
+    transition-duration:  0.6s;
+    background: none;
+    border: none;
+    padding: 0 5px;
+    visibility: hidden;
+    opacity: 0;
+    position: relative;
+    left: 5px;
+}
+.item-remove-btn mat-icon:hover {
+    transition: color 0.6s;
+    cursor: pointer;
+    color: red;
+}
+.item-remove-btn:focus {
+    outline: none;
+}
+.item-remove-btn.visible {
+    transition: opacity 0.6s;
+    visibility: visible;
+    opacity: 1;
+}
+.item-remove-btn mat-icon {
+    font-size: 25px;
+    opacity: 1  ;
+    color: #b8b8b8;
+}

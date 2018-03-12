@@ -11,9 +11,12 @@ export enum ViewModes {
 export class ViewModesManagerService {
    _viewMode: ViewModes = ViewModes.budget;
   viewModeUpdater: Subject<any>;
+  _total: number;
+  totalCounter: Subject<any>;
 
   constructor() {
     this.viewModeUpdater = new BehaviorSubject(this._viewMode);
+    this.totalCounter = new BehaviorSubject(this._total);
    }
 
   switchViewMode() {
@@ -25,5 +28,14 @@ export class ViewModesManagerService {
 
   get viewMode() {
     return this.viewModeUpdater;
+  }
+
+  get total() {
+    return this.totalCounter;
+  }
+
+  emitTotal(sum) {
+    this._total = sum;
+    this.totalCounter.next(this._total);
   }
 }
