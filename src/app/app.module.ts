@@ -11,6 +11,7 @@ import { StartUpComponent } from './start-up/start-up.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { FireAuthService } from './services/fire-auth.service';
 import { FirestoreService } from './services/firestore.service';
@@ -32,6 +33,7 @@ import { UnixToStringPipe } from './pipes/unix-to-string.pipe';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BudgetComponent } from './budget/budget.component';
 import { ViewModesManagerService } from './services/view-modes-manager.service';
+import { AttachmentsComponent } from './attachments/attachments.component';
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -52,7 +54,8 @@ const appRoutes: Routes = [
     SnackBarComponent,
     UnixToStringPipe,
     UserProfileComponent,
-    BudgetComponent
+    BudgetComponent,
+    AttachmentsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireStorageModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
