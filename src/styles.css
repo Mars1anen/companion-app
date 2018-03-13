@@ -154,3 +154,9 @@ button[disabled] {
 button[disabled] span {
     color: white;
 }
+.input-hint {
+    margin: 20px 0px 0px 20px;
+    color: #2196F3;
+    font-size: 14px;
+    font-family: Arial;
+}

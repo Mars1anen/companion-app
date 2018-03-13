@@ -34,6 +34,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BudgetComponent } from './budget/budget.component';
 import { ViewModesManagerService } from './services/view-modes-manager.service';
 import { AttachmentsComponent } from './attachments/attachments.component';
+import { ImgStorageService } from './services/img-storage.service';
+import { DialogAddAttachmentComponent } from './modals/dialog-add-attachment/dialog-add-attachment.component';
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -55,7 +57,8 @@ const appRoutes: Routes = [
     UnixToStringPipe,
     UserProfileComponent,
     BudgetComponent,
-    AttachmentsComponent
+    AttachmentsComponent,
+    DialogAddAttachmentComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +87,8 @@ const appRoutes: Routes = [
     AngularFirestore, 
     FireAuthService, 
     FirestoreService,
-    ViewModesManagerService, 
+    ViewModesManagerService,
+    ImgStorageService,
     SnackBarService,
     TimeToUnixService, 
     AuthGuard, 
@@ -95,6 +99,6 @@ const appRoutes: Routes = [
     provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
     }],
   bootstrap: [AppComponent],
-  entryComponents: [DialogCreateAccountComponent, DialogCreateItemComponent, SnackBarComponent]
+  entryComponents: [DialogCreateAccountComponent, DialogCreateItemComponent, SnackBarComponent, DialogAddAttachmentComponent]
 })
 export class AppModule { }

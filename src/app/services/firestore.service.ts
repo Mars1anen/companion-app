@@ -110,12 +110,38 @@ export class FirestoreService {
     this.accountsCollection.doc(accountId).collection('items').doc(itemId).delete()
       .then(
         result => {
-          this.snackbar.openSnackBar('Элемент удалён!');
+          this.snackbar.openSnackBar('Элемент удалён');
       },
         error => {
-          this.snackbar.openSnackBar('Произошла ошибка.');
+          this.snackbar.openSnackBar('Произошла ошибка');
         }
     )
+  }
+
+  writeNewAttachment(account, name, label) {
+    let attachment = {
+      name: name,
+      label: label
+    };
+    this.accountsCollection.doc(account).collection('attachments').doc(name).set(attachment);
+  }
+
+  checkUniqueAttachmentName(account, fileName) {
+    return this.accountsCollection.doc(account).collection('attachments').doc(fileName).ref;
+  }
+
+  getAttachmentsArray(account) {
+    if (account !== 'all') {
+      return this.accountsCollection.doc(account).collection('attachments').valueChanges().flatMap(x => {
+        let arr = [];
+        arr.push(x);
+        return arr;
+      });
+    }
+  }
+
+  deleteFromAttachments(account, name) {
+    this.accountsCollection.doc(account).collection('attachments').doc(name).delete();
   }
 
   filterForDisplay(itemsArray): Items { // refactored

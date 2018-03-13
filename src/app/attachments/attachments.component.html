@@ -1,3 +1,15 @@
-{{selectedTab}}
-{{userName}}
-<button (click)="log()"></button>
+<div class="heading">
+    <button [hidden]="selectedTab === 'all'" (click)="showAttachmentModal()" matTooltip="Добавить вложение" id="add-attachment-btn" class="glyphicon"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
+    <h2>Вложения</h2>
+</div>
+<div id="attachments-container">
+    <div *ngFor="let attachment of attachments" class="attachment-card">
+        <div class="img-container">
+            <img [src]="attachment.url" class="attachment-preview" />
+        </div>
+        <div class="text-container">
+            <p>{{attachment.label}}</p>
+        </div>
+    </div>
+</div>
+<button (click)="deleteAttachment('лео.jpg')">удалить лео</button>
