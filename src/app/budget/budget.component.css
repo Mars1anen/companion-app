@@ -107,3 +107,27 @@ table th:nth-of-type(5) {
     opacity: 1  ;
     color: #b8b8b8;
 }
+/* Markers */
+.red-marker {
+    background-color: rgba(237, 28, 36, 0.8) !important;
+}
+.blue-marker {
+    background-color: rgba(0, 102, 179, 0.8) !important;
+}
+.yellow-marker {
+    background-color: rgba(255, 242, 0, .8) !important;
+}
+.purple-marker {
+    background-color: rgba(92, 45, 145, .8) !important;
+}
+.green-marker {
+    background-color: rgba(0, 166, 93, .8) !important;
+}
+.orange-marker {
+    background-color: rgba(245, 130, 32, .8) !important;
+}
+.item-marker {
+        min-height: 30px;
+        width: 30px;
+        border-radius: 5px;
+}
