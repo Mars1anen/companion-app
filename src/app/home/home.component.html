@@ -8,7 +8,10 @@
         </div>
     </div>
     <div id="navbar" [ngClass]="{ 'collapsed-total': viewMode !== 1 }" #nav>
-      <p id="greeter">Welcome, <span id="username">{{userName}}!</span></p>
+      <div id="top-row-container">
+          <p id="greeter">Welcome, <span id="username">{{userName}}!</span></p>
+          <button matTooltip="Помощь" (click)="showHelp()" matIcon id="help-btn"><mat-icon><i class="material-icons">help_outline</i></mat-icon></button>
+      </div>
         <div *ngIf="deleteMode !== true" class="accounts-panel" #panel1>
           <button @normalMode [ngClass]="{'active-immune': selectedTab == 'all', 'immune': selectedTab != 'all'}" class="account-btn" (click)="selectTab('all')">Основной</button>
           <button @normalMode [ngClass]="{'active-tab': selectedTab == account.id}" class="account-btn" (click)="selectTab(account.id)" *ngFor="let account of accounts; index as i">{{account.name}}</button>

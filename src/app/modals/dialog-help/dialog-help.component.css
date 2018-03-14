@@ -1,0 +1,17 @@
+#help-inner-container {
+    width: 100%;
+    background-color: white;
+    color: #494949;
+}
+
+h1 {
+    font-family: Vollkorn;
+    font-weight: 700;
+    font-size: 50px;
+    text-align: center;
+    margin: 25px 15px;
+}
+.content-container {
+    width: 90%;
+    margin: auto;
+}

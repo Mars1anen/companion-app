@@ -10,6 +10,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { DialogCreateItemComponent } from '../modals/dialog-create-item/dialog-create-item.component';
 import { Observable } from 'rxjs/Observable';
 import { ViewModes, ViewModesManagerService } from '../services/view-modes-manager.service';
+import { DialogHelpComponent } from '../modals/dialog-help/dialog-help.component';
 
 interface Item {
   name: string,
@@ -188,5 +189,19 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     toEnd.unshift(...toBeginning);
     this.accounts = toEnd;
   }
-}
 
+  showHelp() {
+    this.dialog.open(DialogHelpComponent, {
+      width: '1000px',
+      minHeight: '700px',
+      panelClass: 'help-modal'
+    })
+  }
+}
+/*
+let dialogRef = this.dialog.open(DialogCreateAccountComponent, {
+  width: '500px',
+  height: '350px',
+  panelClass:"createModalDialog",
+  data: { userName: this.userName }
+});*/

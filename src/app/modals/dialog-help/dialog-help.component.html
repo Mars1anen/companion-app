@@ -1,0 +1,9 @@
+<div id="help-inner-container">
+  <h1>Добро пожаловать в Companion</h1>
+  <div class="content-container">
+    <help-index *ngIf="currentPage === 0"></help-index>
+    <help-page-one *ngIf="currentPage === 1"></help-page-one>
+    <help-page-two *ngIf="currentPage === 2"></help-page-two>
+    <help-page-two *ngIf="currentPage === 3"></help-page-two>
+  </div>
+</div>

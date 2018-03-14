@@ -39,6 +39,7 @@ user-profile {
     padding-left: 4.8%;
     color: #FF4716;
     z-index: 1;
+    width: 90%;
 }
 #username {
     margin-left: 7px;
@@ -221,4 +222,27 @@ button.muted i {
 ::ng-deep .mat-tooltip {
     background: #f3851ef1;
     font-size: 11px;
+}
+#top-row-container {
+    display: flex;
+}
+#help-btn {
+    position: relative;
+    top: 8px;
+    right: 14px;
+    padding: 4px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    height: 100%;
+    align-self: center;
+}
+#help-btn:focus {
+    outline: none;
+}
+#help-btn i {
+    opacity: 0.5;
+}
+#help-btn:hover i {
+    opacity: 1;
 }

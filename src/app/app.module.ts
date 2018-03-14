@@ -36,6 +36,11 @@ import { ViewModesManagerService } from './services/view-modes-manager.service';
 import { AttachmentsComponent } from './attachments/attachments.component';
 import { ImgStorageService } from './services/img-storage.service';
 import { DialogAddAttachmentComponent } from './modals/dialog-add-attachment/dialog-add-attachment.component';
+import { DialogHelpComponent } from './modals/dialog-help/dialog-help.component';
+import { PageOneComponent } from './modals/dialog-help/pages/page-one/page-one.component';
+import { PageTwoComponent } from './modals/dialog-help/pages/page-two/page-two.component';
+import { PageThreeComponent } from './modals/dialog-help/pages/page-three/page-three.component';
+import { IndexComponent } from './modals/dialog-help/pages/index/index.component';
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -58,7 +63,12 @@ const appRoutes: Routes = [
     UserProfileComponent,
     BudgetComponent,
     AttachmentsComponent,
-    DialogAddAttachmentComponent
+    DialogAddAttachmentComponent,
+    DialogHelpComponent,
+    PageOneComponent,
+    PageTwoComponent,
+    PageThreeComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
@@ -99,6 +109,6 @@ const appRoutes: Routes = [
     provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
     }],
   bootstrap: [AppComponent],
-  entryComponents: [DialogCreateAccountComponent, DialogCreateItemComponent, SnackBarComponent, DialogAddAttachmentComponent]
+  entryComponents: [DialogCreateAccountComponent, DialogCreateItemComponent, SnackBarComponent, DialogAddAttachmentComponent, DialogHelpComponent]
 })
 export class AppModule { }
