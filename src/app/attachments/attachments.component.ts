@@ -6,11 +6,24 @@ import { AsyncPipe } from '@angular/common';
 import { FirestoreService } from '../services/firestore.service';
 import { ImgStorageService } from '../services/img-storage.service';
 import { Subscription } from 'rxjs';
+import { trigger, state, style, animate, transition, stagger, query } from '@angular/animations';
 
 @Component({
   selector: 'app-attachments',
   templateUrl: './attachments.component.html',
-  styleUrls: ['./attachments.component.css']
+  styleUrls: ['./attachments.component.css'],
+  animations: [
+    trigger('cards', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.4s', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate('0.4s', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class AttachmentsComponent implements OnInit, OnChanges {
   @Input()
@@ -19,6 +32,7 @@ export class AttachmentsComponent implements OnInit, OnChanges {
   userName;
   attachments: Array<any>;
   attachmentsSub: Subscription;
+  deleteMode = false;
   
 
   constructor(
@@ -45,6 +59,7 @@ export class AttachmentsComponent implements OnInit, OnChanges {
       .subscribe(attachments => {
         attachments.forEach(obj => {
           let objForDisplay = {};
+          objForDisplay['name'] = obj.name;
           objForDisplay['label'] = obj.label;
           this.bucket.getImgUrl(this.userName, this.selectedTab, obj.name)
           .subscribe(url => {
@@ -72,6 +87,10 @@ export class AttachmentsComponent implements OnInit, OnChanges {
       panelClass:"createModalDialog",
       data: { userName: this.userName, account: this.selectedTab }
     });
+  }
+
+  intoDelete() {
+    this.deleteMode = !this.deleteMode;
   }
 
   checkUniqueness(attachmentObj) {

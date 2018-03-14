@@ -12,10 +12,11 @@
     font-size: 35px;
     color: #3F51B5;
 }
-.glyphicon:nth-of-type(2) {
-    right: -15px;
+.glyphicon:not(.view-mode-btn) {
+    right: -8px;
+    position: absolute;
 }
-.glyphicon:nth-of-type(2) mat-icon {
+.glyphicon:not(.view-mode-btn) mat-icon {
     transform: rotate(90deg);
 }
 .glyphicon .material-icons:hover {
@@ -25,12 +26,21 @@
 .glyphicon:focus, .account-btn:focus {
     outline: none;
 }
-.user-profile-btn-container {
-    box-sizing: border-box;    
+.user-profile-btn-container {  
     border-right: 1px solid #cccccc90;
     position: absolute;
-    display: flex;
-    flex: auto;
-    width: 100%;
+    width: 80%;
+    padding-right: 20%;
     justify-content: center;
+}
+.view-mode-btn {
+    float: left;
+    border: 1px solid #cccccc69;
+    border-radius: 5px;
+    padding: 3px 15px 3px 5px;
+    position: relative;
+    right: -14px;
+}
+.view-mode-btn i {
+    font-size: 33px;
 }

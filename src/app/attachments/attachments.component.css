@@ -38,26 +38,63 @@
 #add-attachment-btn {
     margin-left: 16px;
 }
+#delete-attachment-btn {
+    margin-left: 68px;
+}
+.delete-icon {
+    position: absolute;
+    right: -20px;
+    top: -17px;
+    color: #2a2a2a;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.delete-icon:hover {
+    transition: all 0.4s;
+    transform: scale(1.1);
+    border: 1px solid black;
+    border-radius: 999px;
+}
+.delete-icon:active {
+    transition: all 0.4s;
+    transform: scale(0.97);
+    border: 1px solid #ccc;
+}
+.delete-icon:focus {
+    outline: none;
+}
+.delete-icon i {
+    opacity: 1;
+}
+img:not(.transparent) {
+    transition: opacity 0.8s;
+    opacity: 1;
+}
+img.transparent {
+    transition: opacity 0.8s;
+    opacity: 0.5;
+}
 #attachments-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 .attachment-card {
-    height: 370px;
-    margin: 0 23px 20px 23px;
+    height: 320px;
+    margin: 0 20px 20px 20px;
     display: flex;
     flex-direction: column;
-    border: 1px solid transparent;
-    border-radius: 10px;
+    border: 1px solid #a2a2;
+    border-radius: 5px;
     padding: 10px;
-    background: #ffc107;
+    background: #f5f5f5;
     color: #2a2a2a;
     font-size: 16px;
     font-family: 'Fira Sans';
     font-weight: 700;
 }
-.attachment-card:nth-child(1) {
+.attachment-card:first {
     margin-left: 0;
 }
 .attachment-card:nth-child(3n+1) {
@@ -65,7 +102,7 @@
 }
 .attachment-card:nth-child(3) {
     margin-right: 0;
-    margin-left: 23px;
+    margin-left: 20px;
 }
 .attachment-card:nth-child(3n+3) {
     margin-right: 0;
@@ -78,6 +115,7 @@
 }
 .img-container {
     margin-bottom: auto;
+    position: relative;
 }
 .text-container {
     text-align: center;
