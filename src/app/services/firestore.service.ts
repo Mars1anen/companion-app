@@ -49,6 +49,15 @@ export class FirestoreService {
     return containerObs;
   }
 
+  getAllAttachmentsForThisUser(accountsArray) {
+    let accountsCollection = this.accountsCollection;
+    let containerObs = Observable.create(function(observer) {
+      accountsArray.forEach(account => observer.next(accountsCollection.doc(account.id).collection('attachments').valueChanges()));
+    });
+    containerObs = containerObs.flatMap(x => x).concatAll();
+    return containerObs;
+  }
+
   createNewUser(uid, username, email) { // refactored
     let newDoc = {
       username: username,
@@ -121,7 +130,8 @@ export class FirestoreService {
   writeNewAttachment(account, name, label) {
     let attachment = {
       name: name,
-      label: label
+      label: label,
+      account: account
     };
     this.accountsCollection.doc(account).collection('attachments').doc(name).set(attachment);
   }

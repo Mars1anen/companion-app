@@ -2,7 +2,10 @@
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 @import url('https://fonts.googleapis.com/css?family=Lato|Fira+Sans|Cuprum:400,700');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-
+    
+html {
+    overflow-y: scroll;
+}
 .form-wrapper {
     margin: 25px auto;
     position: relative;

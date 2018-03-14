@@ -25,6 +25,7 @@ import { trigger, state, style, animate, transition, stagger, query } from '@ang
     ])
   ]
 })
+
 export class AttachmentsComponent implements OnInit, OnChanges {
   @Input()
   selectedTab;
@@ -33,7 +34,7 @@ export class AttachmentsComponent implements OnInit, OnChanges {
   attachments: Array<any>;
   attachmentsSub: Subscription;
   deleteMode = false;
-  
+  accountsMap = {};
 
   constructor(
     public dialog:MatDialog,
@@ -55,21 +56,45 @@ export class AttachmentsComponent implements OnInit, OnChanges {
 
   getAttachments() {
     this.attachments = [];
-    this.attachmentsSub = this.db.getAttachmentsArray(this.selectedTab)
-      .subscribe(attachments => {
-        attachments.forEach(obj => {
-          let objForDisplay = {};
-          objForDisplay['name'] = obj.name;
-          objForDisplay['label'] = obj.label;
-          this.bucket.getImgUrl(this.userName, this.selectedTab, obj.name)
-          .subscribe(url => {
-            objForDisplay['url'] = url;
-            if (this.checkUniqueness(objForDisplay)) {
-              this.attachments.push(objForDisplay);
-            }
+    if (this.selectedTab !== 'all') {
+      this.attachmentsSub = this.db.getAttachmentsArray(this.selectedTab)
+        .subscribe(attachments => {
+          attachments.forEach(obj => {
+            let objForDisplay = {};
+            objForDisplay['name'] = obj.name;
+            objForDisplay['label'] = obj.label;
+            this.bucket.getImgUrl(this.userName, this.selectedTab, obj.name)
+            .subscribe(url => {
+              objForDisplay['url'] = url;
+              if (this.checkUniqueness(objForDisplay)) {
+                this.attachments.push(objForDisplay);
+              }
+            });
+          })
+        });
+    } else {
+      let container = [];
+      let accountsSub = this.db.getAllUserAccounts(this.userName) // Get array of Account observables
+        .subscribe(accounts => {
+          accounts.forEach((acc: any) => {
+            this.accountsMap[acc.id] = acc.name;
           });
+          let attachmentsSub = this.db.getAllAttachmentsForThisUser(accounts)
+            .subscribe(attachment => {
+              let objForDisplay = {};
+              objForDisplay['name'] = attachment.name;
+              objForDisplay['label'] = attachment.label;
+              objForDisplay['account'] = attachment.account;
+              this.bucket.getImgUrl(this.userName, attachment.account, attachment.name)
+                .subscribe(url => {
+                  objForDisplay['url'] = url;
+                  if (this.checkUniqueness(objForDisplay)) {
+                    this.attachments.push(objForDisplay);
+                  }
+                });
+            })
         })
-      });
+    }
   }
 
   deleteAttachment(name) {
@@ -100,5 +125,9 @@ export class AttachmentsComponent implements OnInit, OnChanges {
       if (obj.label === attachmentObj.label || obj.url === attachmentObj.url) bool = false;
     })
     return bool;
+  }
+
+  getAccountNameById(id) {
+    return this.accountsMap[id];
   }
 }

@@ -11,6 +11,7 @@
         </div>
         <div class="text-container">
             <p>{{attachment.label}}</p>
+            <p class="acc-label" *ngIf="selectedTab === 'all'">Из кошелька: <span>{{getAccountNameById(attachment.account)}}</span></p>
         </div>
     </div>
 </div>

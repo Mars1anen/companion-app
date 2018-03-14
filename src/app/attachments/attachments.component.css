@@ -111,7 +111,7 @@ img.transparent {
     display: block;
     min-width: 280px;
     max-width: 280px;
-    max-height: 250px;
+    max-height: 230px;
 }
 .img-container {
     margin-bottom: auto;
@@ -119,4 +119,11 @@ img.transparent {
 }
 .text-container {
     text-align: center;
+}
+.acc-label {
+    font-weight: 400;
+}
+.acc-label span {
+    color: #ff9800;
+    margin-left: 8px;
 }
