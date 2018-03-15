@@ -2,6 +2,7 @@
     width: 100%;
     background-color: white;
     color: #494949;
+    min-height: 750px;
 }
 
 h1 {
@@ -9,9 +10,19 @@ h1 {
     font-weight: 700;
     font-size: 50px;
     text-align: center;
-    margin: 25px 15px;
+    margin: 15px 15px 25px;
+    color: #ff5722;
 }
 .content-container {
+    display: flex;
     width: 90%;
     margin: auto;
+}
+.index-container {
+    width: 27%;
+    margin-top: 10px;
+    margin-right: 5%;
+}
+.current-page-container {
+    width: 75%;
 }

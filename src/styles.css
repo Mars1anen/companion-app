@@ -177,8 +177,7 @@ button[disabled] span {
     margin-right: 10px;
 }
 .body-text {
-    width: 90%;
-    margin: 50px auto 30px auto;
+    margin: 15px auto 15px auto;
     display: flex;
     flex-direction: column;
 }
@@ -186,17 +185,9 @@ button[disabled] span {
     display: flex;
     flex-direction: row;
 }
-.row p:first-child, .row p:last-child {
-    width: 45%;
-}
-.row p:first-child {
-    padding-right: 5%;
-    border-right: 1px solid #a2a2a2;
-}
-.row p:last-child {
-    padding-left: 5%;
-    border-left: 1px solid #a2a2a2;
-}
-.body-text p {
-    text-indent: 5mm;
+.body-text p {    
+    text-indent: 7mm;
+    font-size: 18px;
+    line-height: 1.5em;
+    font-family: Vollkorn;
 }

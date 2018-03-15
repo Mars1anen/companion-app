@@ -1,9 +1,37 @@
-.intro {
-    margin: 50px auto;
-    font-size: 1.15em;
-}
 h3 {
-    font-size: 1.3em;
+    font-size: 1em;
+    border-bottom: 1px solid #dadada;
+    padding-bottom: 2px;
+    color: #bbbbbb;
+}
+.index-navigation {
+    margin-top: 25px;
+    border-collapse: collapse;
+    width: 11.5%;
+    position: fixed;
+}
+.index-navigation td {
+    border-top: 1px dotted #e4e4e4;
+    border-bottom: 1px dotted #e4e4e4;
+}
+.index-navigation button {
+    font-size: 15px;
+    background: none;
+    border: none;
+    padding: 8px 0px 8px 2px;
+    color: #03A9F4;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+.index-navigation button:hover {
+    color: #FF9800;
+}
+.index-navigation button:active {
+    color: #ff7300;
+}
+.index-navigation button:focus {
+    outline: none;
 }
 li {
     margin: 4px auto;

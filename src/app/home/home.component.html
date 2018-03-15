@@ -9,7 +9,7 @@
     </div>
     <div id="navbar" [ngClass]="{ 'collapsed-total': viewMode !== 1 }" #nav>
       <div id="top-row-container">
-          <p id="greeter">Welcome, <span id="username">{{userName}}!</span></p>
+          <p id="greeter">Привет, <span id="username">{{userName}}!</span></p>
           <button matTooltip="Помощь" (click)="showHelp()" matIcon id="help-btn"><mat-icon><i class="material-icons">help_outline</i></mat-icon></button>
       </div>
         <div *ngIf="deleteMode !== true" class="accounts-panel" #panel1>
