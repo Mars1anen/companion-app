@@ -81,7 +81,7 @@ img.transparent {
     flex-wrap: wrap;
 }
 .attachment-card {
-    height: 320px;
+    height: 300px;
     margin: 0 20px 20px 20px;
     display: flex;
     flex-direction: column;
@@ -111,7 +111,8 @@ img.transparent {
     display: block;
     min-width: 280px;
     max-width: 280px;
-    max-height: 230px;
+    max-height: 210px;
+    object-fit: cover;
 }
 .img-container {
     margin-bottom: auto;
@@ -119,6 +120,7 @@ img.transparent {
 }
 .text-container {
     text-align: center;
+    background-color: #e0d6cc47;
 }
 .acc-label {
     font-weight: 400;

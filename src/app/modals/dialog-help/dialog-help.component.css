@@ -6,11 +6,11 @@
 }
 
 h1 {
-    font-family: Vollkorn;
+    font-family: 'Fira Sans';
     font-weight: 700;
     font-size: 50px;
     text-align: center;
-    margin: 15px 15px 25px;
+    margin: 15px 15px 30px;
     color: #ff5722;
 }
 .content-container {

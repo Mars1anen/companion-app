@@ -41,6 +41,9 @@ import { PageOneComponent } from './modals/dialog-help/pages/page-one/page-one.c
 import { PageTwoComponent } from './modals/dialog-help/pages/page-two/page-two.component';
 import { PageThreeComponent } from './modals/dialog-help/pages/page-three/page-three.component';
 import { IndexComponent } from './modals/dialog-help/pages/index/index.component';
+import { PageFourComponent } from './modals/dialog-help/pages/page-four/page-four.component';
+import { PageFiveComponent } from './modals/dialog-help/pages/page-five/page-five.component';
+import { PageSixComponent } from './modals/dialog-help/pages/page-six/page-six.component';
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -68,7 +71,10 @@ const appRoutes: Routes = [
     PageOneComponent,
     PageTwoComponent,
     PageThreeComponent,
-    IndexComponent
+    IndexComponent,
+    PageFourComponent,
+    PageFiveComponent,
+    PageSixComponent
   ],
   imports: [
     BrowserModule,
