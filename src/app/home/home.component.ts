@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DialogCreateItemComponent } from '../modals/dialog-create-item/dialog-create-item.component';
 import { Observable } from 'rxjs/Observable';
+import { ViewModes, ViewModesManagerService } from '../services/view-modes-manager.service';
+import { DialogHelpComponent } from '../modals/dialog-help/dialog-help.component';
 
 interface Item {
   name: string,
@@ -37,22 +39,7 @@ export interface Items extends Array<{}> {
           style({ padding: '3px 20px 3px 15px', opacity: '0' }),
           animate(500)
       ])
-    ]),
-    trigger('itemEnter', [
-      transition(':enter', [
-          style({ 
-            opacity: '0',
-            transform: 'translate(-400px)'
-         }),
-          animate(800)
-      ])
-    ]),
-    trigger('hide', [
-      transition(':enter', [
-          style({ opacity: '0.5' }),
-          animate(600)
-      ])
-    ]),
+    ])
   ]
 })
 
@@ -61,6 +48,8 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   userName: string;
   accounts;
   accountsSub: Subscription;
+  viewMode: ViewModes;
+
   items: Items = [];
   itemsSub: Subscription;
   selectedTab;
@@ -74,8 +63,19 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     private changeDetector: ChangeDetectorRef,
     private auth: FireAuthService,
     private storage: FirestoreService,
+    private vmm: ViewModesManagerService,
     private route: ActivatedRoute,
-    public dialog:MatDialog) { }
+    public dialog:MatDialog
+  ) { 
+      this.vmm.viewMode
+      .subscribe(vm => {
+        this.viewMode = vm;
+      });
+      this.vmm.total
+      .subscribe(total => {
+        this.total = total;
+      });
+     }
 
   ngOnInit() {
     this.route.params
@@ -90,7 +90,6 @@ export class HomeComponent implements OnInit, AfterViewChecked {
               this.accounts = resp;
               this.selectTab('all');
             }
-            console.log(resp);
           }) 
       });
   }
@@ -124,6 +123,10 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     })
   }
 
+  selectTab(i) {
+    this.selectedTab = i;
+  }
+
   deleteTab(index): void {
     let i = this.accounts.findIndex(element => {
       return element.id === index
@@ -138,55 +141,8 @@ export class HomeComponent implements OnInit, AfterViewChecked {
       });
   }
 
-  selectTab(i) {
-    if (i === 'all') {
-      this.selectedTab = 'all';   
-      var container = [];
-      this.accountsSub = this.storage.getAllUserAccounts(this.userName) // Get array of Account observables
-        .subscribe(accounts => { 
-          this.storage.getAllItemsForThisUser(accounts) // Get items by searching each Account's id
-            .subscribe(values => {
-              container.push(values);
-              this.items = this.storage.filterForDisplay(container);
-              this.countUpTotal();
-            });
-        });
-    } else {
-      this.selectedTab = i;
-      if (this.itemsSub) this.itemsSub.unsubscribe();
-      this.itemsSub = this.storage.getItemsForView(this.selectedTab)
-        .subscribe((resp: any) => {
-          this.items = this.storage.filterForDisplay(resp);
-          this.countUpTotal();
-        })
-    }
-  }
-
-  createItem(boolean):void {
-    let dialogRef = this.dialog.open(DialogCreateItemComponent, {
-      width: '500px',
-      height: '500px',
-      panelClass:"createModalDialog",
-      data: {
-        accountId: this.selectedTab,
-        income: boolean }
-    });
-  }
-
-  deleteItem(item) {
-    this.storage.deleteItem(item.accountId, item.id);
-    if (this.selectedTab === 'all') this.selectTab('all');
-  }
-
   intoDelete() {
     this.deleteMode = !this.deleteMode;
-  }
-
-  countUpTotal() {
-    let sum = 0;
-    this.items.incomes.forEach(obj => sum += obj.amount);
-    this.items.expenses.forEach(obj => sum -= obj.amount);
-    this.total = sum;
   }
 
   checkOverflow() {
@@ -233,5 +189,19 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     toEnd.unshift(...toBeginning);
     this.accounts = toEnd;
   }
-}
 
+  showHelp() {
+    this.dialog.open(DialogHelpComponent, {
+      width: '1000px',
+      height: '850px',
+      panelClass: 'help-modal'
+    })
+  }
+}
+/*
+let dialogRef = this.dialog.open(DialogCreateAccountComponent, {
+  width: '500px',
+  height: '350px',
+  panelClass:"createModalDialog",
+  data: { userName: this.userName }
+});*/

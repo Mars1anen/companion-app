@@ -3,6 +3,9 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Fira+Sans|Cuprum:400,700');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+html {
+    overflow-y: scroll;
+}
 .form-wrapper {
     margin: 25px auto;
     position: relative;
@@ -153,4 +156,59 @@ button[disabled] {
 }
 button[disabled] span {
     color: white;
+}
+.input-hint {
+    margin: 20px 0px 0px 20px;
+    color: #2196F3;
+    font-size: 14px;
+    font-family: Arial;
+}
+.help-modal {
+    top: 100px;
+    color: black;
+    font-family: 'Fira Sans';
+}
+.help-modal mat-dialog-container {
+    border: 10px solid #ccc;
+    background: white;
+}
+/* Documentation */
+.numeration {
+    margin-right: 10px;
+}
+.section-heading{
+    font-family: Cuprum;
+}
+.body-text {
+    margin: 15px auto 15px auto;
+    display: flex;
+    flex-direction: column;
+}
+.body-text .row {
+    display: flex;
+    flex-direction: row;
+}
+.body-text p {    
+    text-indent: 7mm;
+    font-size: 17px;
+    line-height: 1.5em;
+    font-family: 'Fira Sans';
+    word-spacing: 0.2em;
+}
+.icon-example {
+    text-indent: 0;
+    top: 4px;
+    position: relative;
+}
+.help-aside {
+    font-size: 0.9em;
+    font-style: italic;
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+    margin: 10px 0px;
+    padding: 10px;
+    color: #a0a0a0;
+}
+strong.title {
+    color: #FF4716;
 }

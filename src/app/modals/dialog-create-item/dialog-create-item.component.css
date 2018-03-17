@@ -53,6 +53,3 @@ mat-form-field~button:hover {
     top: 16px;
     right: 20px;
 }
-button [disabled] {
-    background-color: grey !important;
-}

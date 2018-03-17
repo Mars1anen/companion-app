@@ -1,0 +1,17 @@
+<div class="heading">
+    <button [hidden]="selectedTab === 'all'" (click)="showAttachmentModal()" matTooltip="Добавить вложение" id="add-attachment-btn" class="glyphicon"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
+    <button [hidden]="selectedTab === 'all'" matTooltip="Удалить вложение" [ngClass]="{'active': deleteMode === true}" class="glyphicon" id="delete-attachment-btn" (click)="intoDelete()" aria-label="remove_account"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button>
+    <h2>Вложения</h2>
+</div>
+<div id="attachments-container">
+    <div @cards *ngFor="let attachment of attachments" class="attachment-card">
+        <div class="img-container">
+            <img [src]="attachment.url" [ngClass]="{'transparent': deleteMode === true}" class="attachment-preview" />
+            <button *ngIf="deleteMode === true" (click)="deleteAttachment(attachment.name); intoDelete()" class="delete-icon"><mat-icon aria-hidden="true"><i class="material-icons">highlight_off</i></mat-icon></button>
+        </div>
+        <div class="text-container">
+            <p>{{attachment.label}}</p>
+            <p class="acc-label" *ngIf="selectedTab === 'all'">Из кошелька: <span>{{getAccountNameById(attachment.account)}}</span></p>
+        </div>
+    </div>
+</div>

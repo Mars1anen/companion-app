@@ -1,0 +1,26 @@
+button {    
+    border: none;
+    border-radius: 999px;
+    padding: 10px;
+    position: relative;
+    bottom: 10px;
+    right: -45%;
+    cursor: pointer;
+}
+mat-icon {
+    width: 32px;
+    height: 32px;
+}
+button i {
+    font-size: 32px;
+}
+button:hover {
+    background-color: #f79235;
+    color: white;
+}
+button:active {
+    background-color: #ff5722;
+}
+button:focus {
+    outline: none;
+}

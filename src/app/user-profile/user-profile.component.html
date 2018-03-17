@@ -1,4 +1,9 @@
 <div class="user-profile-btn-container">
-  <button matTooltip="Меню" class="glyphicon" (click)="accessMenu()"><mat-icon><i class="material-icons">menu</i></mat-icon></button> 
+  <button @profile-btn matTooltip="Перейти к вложениям" *ngIf="currentViewMode === 1" class="glyphicon view-mode-btn" (click)="accessMenu()">
+    <mat-icon><i class="material-icons">attach_money</i></mat-icon>
+  </button>
+  <button @profile-btn2 matTooltip="Перейти к бюджету" *ngIf="currentViewMode === 2" class="glyphicon view-mode-btn" (click)="accessMenu()">
+    <mat-icon><i class="material-icons">insert_photo</i></mat-icon>
+  </button>  
   <button matTooltip="Выйти" class="glyphicon" (click)="logOut()"><mat-icon><i class="material-icons">vertical_align_top</i></mat-icon></button>
 </div>

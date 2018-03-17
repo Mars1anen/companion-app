@@ -11,6 +11,7 @@ import { StartUpComponent } from './start-up/start-up.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { FireAuthService } from './services/fire-auth.service';
 import { FirestoreService } from './services/firestore.service';
@@ -30,6 +31,19 @@ import { AppDateAdapter, APP_DATE_FORMATS } from './date.adapter';
 import { TimeToUnixService } from './services/time-to-unix.service';
 import { UnixToStringPipe } from './pipes/unix-to-string.pipe';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { BudgetComponent } from './budget/budget.component';
+import { ViewModesManagerService } from './services/view-modes-manager.service';
+import { AttachmentsComponent } from './attachments/attachments.component';
+import { ImgStorageService } from './services/img-storage.service';
+import { DialogAddAttachmentComponent } from './modals/dialog-add-attachment/dialog-add-attachment.component';
+import { DialogHelpComponent } from './modals/dialog-help/dialog-help.component';
+import { PageOneComponent } from './modals/dialog-help/pages/page-one/page-one.component';
+import { PageTwoComponent } from './modals/dialog-help/pages/page-two/page-two.component';
+import { PageThreeComponent } from './modals/dialog-help/pages/page-three/page-three.component';
+import { IndexComponent } from './modals/dialog-help/pages/index/index.component';
+import { PageFourComponent } from './modals/dialog-help/pages/page-four/page-four.component';
+import { PageFiveComponent } from './modals/dialog-help/pages/page-five/page-five.component';
+import { PageSixComponent } from './modals/dialog-help/pages/page-six/page-six.component';
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -49,7 +63,18 @@ const appRoutes: Routes = [
     ShowDeleteBtnDirective,
     SnackBarComponent,
     UnixToStringPipe,
-    UserProfileComponent
+    UserProfileComponent,
+    BudgetComponent,
+    AttachmentsComponent,
+    DialogAddAttachmentComponent,
+    DialogHelpComponent,
+    PageOneComponent,
+    PageTwoComponent,
+    PageThreeComponent,
+    IndexComponent,
+    PageFourComponent,
+    PageFiveComponent,
+    PageSixComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +83,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireStorageModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -70,13 +96,15 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // Console.log route changes
+      //{ enableTracing: true } // Console.log route changes
     )
   ],
   providers: [
     AngularFirestore, 
     FireAuthService, 
-    FirestoreService, 
+    FirestoreService,
+    ViewModesManagerService,
+    ImgStorageService,
     SnackBarService,
     TimeToUnixService, 
     AuthGuard, 
@@ -87,6 +115,6 @@ const appRoutes: Routes = [
     provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
     }],
   bootstrap: [AppComponent],
-  entryComponents: [DialogCreateAccountComponent, DialogCreateItemComponent, SnackBarComponent]
+  entryComponents: [DialogCreateAccountComponent, DialogCreateItemComponent, SnackBarComponent, DialogAddAttachmentComponent, DialogHelpComponent]
 })
 export class AppModule { }

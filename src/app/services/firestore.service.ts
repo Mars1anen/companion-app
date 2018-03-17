@@ -49,6 +49,15 @@ export class FirestoreService {
     return containerObs;
   }
 
+  getAllAttachmentsForThisUser(accountsArray) {
+    let accountsCollection = this.accountsCollection;
+    let containerObs = Observable.create(function(observer) {
+      accountsArray.forEach(account => observer.next(accountsCollection.doc(account.id).collection('attachments').valueChanges()));
+    });
+    containerObs = containerObs.flatMap(x => x).concatAll();
+    return containerObs;
+  }
+
   createNewUser(uid, username, email) { // refactored
     let newDoc = {
       username: username,
@@ -110,12 +119,39 @@ export class FirestoreService {
     this.accountsCollection.doc(accountId).collection('items').doc(itemId).delete()
       .then(
         result => {
-          this.snackbar.openSnackBar('Элемент удалён!');
+          this.snackbar.openSnackBar('Элемент удалён');
       },
         error => {
-          this.snackbar.openSnackBar('Произошла ошибка.');
+          this.snackbar.openSnackBar('Произошла ошибка');
         }
     )
+  }
+
+  writeNewAttachment(account, name, label) {
+    let attachment = {
+      name: name,
+      label: label,
+      account: account
+    };
+    this.accountsCollection.doc(account).collection('attachments').doc(name).set(attachment);
+  }
+
+  checkUniqueAttachmentName(account, fileName) {
+    return this.accountsCollection.doc(account).collection('attachments').doc(fileName).ref;
+  }
+
+  getAttachmentsArray(account) {
+    if (account !== 'all') {
+      return this.accountsCollection.doc(account).collection('attachments').valueChanges().flatMap(x => {
+        let arr = [];
+        arr.push(x);
+        return arr;
+      });
+    }
+  }
+
+  deleteFromAttachments(account, name) {
+    this.accountsCollection.doc(account).collection('attachments').doc(name).delete();
   }
 
   filterForDisplay(itemsArray): Items { // refactored
@@ -132,7 +168,6 @@ export class FirestoreService {
     let processed = [];
     processed['incomes'] = itemsArray.filter(f(true));
     processed['expenses'] = itemsArray.filter(f(false));
-
     return processed;
   }
 }
