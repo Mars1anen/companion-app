@@ -94,7 +94,7 @@ img.transparent {
     font-family: 'Fira Sans';
     font-weight: 700;
 }
-.attachment-card:first {
+.attachment-card:first-child {
     margin-left: 0;
 }
 .attachment-card:nth-child(3n+1) {
