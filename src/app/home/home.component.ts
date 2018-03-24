@@ -192,8 +192,8 @@ export class HomeComponent implements OnInit, AfterViewChecked {
 
   showHelp() {
     this.dialog.open(DialogHelpComponent, {
-      width: '1000px',
-      height: '850px',
+      width: '80%',
+      height: '80%',
       panelClass: 'help-modal'
     })
   }
