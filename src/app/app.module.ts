@@ -44,6 +44,7 @@ import { IndexComponent } from './modals/dialog-help/pages/index/index.component
 import { PageFourComponent } from './modals/dialog-help/pages/page-four/page-four.component';
 import { PageFiveComponent } from './modals/dialog-help/pages/page-five/page-five.component';
 import { PageSixComponent } from './modals/dialog-help/pages/page-six/page-six.component';
+import { ImageViewerComponent } from './modals/image-viewer/image-viewer.component';
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -74,7 +75,8 @@ const appRoutes: Routes = [
     IndexComponent,
     PageFourComponent,
     PageFiveComponent,
-    PageSixComponent
+    PageSixComponent,
+    ImageViewerComponent
   ],
   imports: [
     BrowserModule,
@@ -115,6 +117,6 @@ const appRoutes: Routes = [
     provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
     }],
   bootstrap: [AppComponent],
-  entryComponents: [DialogCreateAccountComponent, DialogCreateItemComponent, SnackBarComponent, DialogAddAttachmentComponent, DialogHelpComponent]
+  entryComponents: [DialogCreateAccountComponent, DialogCreateItemComponent, SnackBarComponent, DialogAddAttachmentComponent, DialogHelpComponent, ImageViewerComponent]
 })
 export class AppModule { }

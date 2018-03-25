@@ -7,6 +7,7 @@ import { FirestoreService } from '../services/firestore.service';
 import { ImgStorageService } from '../services/img-storage.service';
 import { Subscription } from 'rxjs';
 import { trigger, state, style, animate, transition, stagger, query } from '@angular/animations';
+import { ImageViewerComponent } from '../modals/image-viewer/image-viewer.component';
 
 @Component({
   selector: 'app-attachments',
@@ -138,5 +139,14 @@ export class AttachmentsComponent implements OnInit, OnChanges {
 
   getAccountNameById(id) {
     return this.accountsMap[id];
+  }
+
+  viewImage(url) {
+    this.dialog.open(ImageViewerComponent, {
+      panelClass: 'image-vw-modal',
+      data: {
+        url: url
+      }
+    })
   }
 }
