@@ -98,11 +98,20 @@ export class AttachmentsComponent implements OnInit, OnChanges {
   }
 
   deleteAttachment(name) {
-    this.bucket.deleteAttachment(this.userName, this.selectedTab, name)
-      .subscribe(resp => {
-        this.attachmentsSub.unsubscribe();
-        this.getAttachments();
-      });
+    if (this.selectedTab === 'all') {
+      let acc = this.attachments.find(el => el.name === name)['account'];
+      this.bucket.deleteAttachment(this.userName, acc, name)
+        .subscribe(resp => {
+          if (this.attachmentsSub) this.attachmentsSub.unsubscribe();
+          this.getAttachments();
+        });
+    } else {
+      this.bucket.deleteAttachment(this.userName, this.selectedTab, name)
+        .subscribe(resp => {
+          if (this.attachmentsSub) this.attachmentsSub.unsubscribe();
+          this.getAttachments();
+        });
+    }
   }
 
   showAttachmentModal() {

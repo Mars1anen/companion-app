@@ -1,6 +1,6 @@
 <div class="heading">
     <button [hidden]="selectedTab === 'all'" (click)="showAttachmentModal()" matTooltip="Добавить вложение" id="add-attachment-btn" class="glyphicon"><mat-icon aria-hidden="true"><i class="material-icons">add</i></mat-icon></button>
-    <button [hidden]="selectedTab === 'all'" matTooltip="Удалить вложение" [ngClass]="{'active': deleteMode === true}" class="glyphicon" id="delete-attachment-btn" (click)="intoDelete()" aria-label="remove_account"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button>
+    <button matTooltip="Удалить вложение" [ngClass]="{'active': deleteMode === true}" class="glyphicon" id="delete-attachment-btn" (click)="intoDelete()" aria-label="remove_account"><mat-icon aria-hidden="true"><i class="material-icons">delete</i></mat-icon></button>
     <h2>Вложения</h2>
 </div>
 <div id="attachments-container">
