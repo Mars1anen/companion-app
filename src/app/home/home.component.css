@@ -1,7 +1,6 @@
 .container {
     margin: 0 auto;
-    width: 1000px;    
-    /*background-image: linear-gradient(180deg, white, #FFE5F6);*/
+    width: 1000px;
     font-family: Lato;
     overflow-y: hidden;
 }
@@ -245,4 +244,12 @@ button.muted i {
 }
 #help-btn:hover i {
     opacity: 1;
+}
+
+@media (max-width: 767px) { /* less than iPad */
+
+}
+
+@media (max-width: 999px) { /* iPad and larger, but not large enough for normal viewport */
+
 }
