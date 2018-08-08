@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Input, ChangeDetectorRef, Renderer } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { FireAuthService } from '../services/fire-auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +11,8 @@ import { DialogCreateItemComponent } from '../modals/dialog-create-item/dialog-c
 import { Observable } from 'rxjs/Observable';
 import { ViewModes, ViewModesManagerService } from '../services/view-modes-manager.service';
 import { DialogHelpComponent } from '../modals/dialog-help/dialog-help.component';
+import { EventListener } from '@angular/core/src/debug/debug_node';
+import { MbChooseModeComponent } from '../mb-choose-mode/mb-choose-mode.component';
 
 interface Item {
   name: string,
@@ -58,6 +60,11 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   accOverflown: boolean = false;
   sliderPosition = 0;
   sliderPreviousPosition: number;
+  activeTabName;
+  mbAaccountListOpened = false;
+  mbAaccountDeleteListOpened = false;
+  mbAccountListWatcher;
+  mbDeleteAccountListWatcher;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -65,7 +72,8 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     private storage: FirestoreService,
     private vmm: ViewModesManagerService,
     private route: ActivatedRoute,
-    public dialog:MatDialog
+    public dialog:MatDialog,
+    private renderer: Renderer
   ) { 
       this.vmm.viewMode
       .subscribe(vm => {
@@ -125,6 +133,9 @@ export class HomeComponent implements OnInit, AfterViewChecked {
 
   selectTab(i) {
     this.selectedTab = i;
+    var activeTab = this.accounts.find(el => el.id == i);
+    if (activeTab) this.activeTabName = activeTab.name;
+    else this.activeTabName = 'all';
   }
 
   deleteTab(index): void {
@@ -146,10 +157,13 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   }
 
   checkOverflow() {
-    let parent = document.querySelector('#navbar').clientWidth;
-    let children = document.querySelectorAll('.accounts-panel button');
-    let lastButton:any = children[children.length-1];
-    return (lastButton.offsetLeft + lastButton.offsetWidth) > parent;
+    let el = document.querySelector('#navbar');
+    if (el) {
+      let parent = el.clientWidth;
+      let children = document.querySelectorAll('.accounts-panel button');
+      let lastButton:any = children[children.length-1];
+      return (lastButton.offsetLeft + lastButton.offsetWidth) > parent;
+    }
   }
 
   selectBtn(nextOrPrevious) {
@@ -196,6 +210,50 @@ export class HomeComponent implements OnInit, AfterViewChecked {
       height: '80%',
       panelClass: 'help-modal'
     })
+  }
+
+  mbOpenAccountList() {
+    let that = this;
+    this.mbAaccountListOpened = true;
+    setTimeout(function() {
+      that.mbAccountListWatcher = that.renderer.listenGlobal('document', 'click', (event) => {
+        if (!event.target.classList.contains("account-btn")) {
+          event.target.classList.contains("account-btn");
+          that.mbAaccountListOpened = false;
+          that.mbAccountListWatcher();
+        }
+      });
+    }, 100);
+  }
+
+  mbCloseAccountList() {
+    if (this.mbAccountListWatcher) {
+      this.mbAccountListWatcher();
+    };
+    this.mbAaccountListOpened = false;
+  }
+  
+  mbOpenDeleteAccountList() {
+    let that = this;
+    this.mbAaccountDeleteListOpened = true;
+    setTimeout(function() {
+      that.mbDeleteAccountListWatcher = that.renderer.listenGlobal('document', 'click', (event) => {
+        if (!event.target.classList.contains("account-btn")) {
+          event.target.classList.contains("account-btn");
+          that.mbAaccountDeleteListOpened = false;
+          that.mbDeleteAccountListWatcher();
+        }
+      });
+    }, 100);
+  }
+
+  mbChooseMode() {
+    let dialogRef = this.dialog.open(MbChooseModeComponent, {
+      width: '360px',
+      height: '280px',
+      panelClass:"mbChooseModeDialog",
+      data: { viewMode: this.viewMode }
+    });
   }
 }
 /*

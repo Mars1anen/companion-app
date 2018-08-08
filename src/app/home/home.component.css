@@ -1,255 +1,389 @@
-.container {
+button:focus {
+    outline: none;
+}
+
+@media all and (min-width: 1016px) {
+    .container {
+        margin: 0 auto;
+        width: 1000px;
+        font-family: Lato;
+        overflow-y: hidden;
+    }
+    #toolbar {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 30px;
+    }
+    #controls {
+        text-align: right;
+        width: 120px;
+        margin-top: 63px;
+        border-bottom: 1px solid #cccccc90;
+        border-right: 1px solid #cccccc90;
+        vertical-align: bottom;
+        height: 40px;
+    }
+    #navbar {
+        width: calc(100% - 210px - 120px);
+        border-bottom: 1px solid #ccc;
+        position: relative;
+    }
+    #sidebar {
+        display: flex;
+        flex-direction: column;
+    }
+    user-profile {
+        position: relative;
+        top: 10px;
+    }
+    #greeter {
+        font-size: 20px;
+        font-weight: 700;
+        font-family: 'Fira Sans';
+        padding-left: 4.8%;
+        color: #FF4716;
+        z-index: 1;
+        width: 90%;
+    }
+    #username {
+        margin-left: 7px;
+    }
+    .accounts-panel {
+        padding: 2px 18px;
+        text-align: left;
+    }
+    .account-btn {
+        transition: background-color 0.4s;
+        font-family: 'Fira Sans';
+        padding: 3px 13px;
+        font-size: 17px;
+        border-radius: 18px;
+        border: 1px solid #ffcdb5;
+        margin-right: 5px;
+        background-color: white;
+        color: #808080;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+    .account-btn:not(.active-tab):not(.delete-me):not(.active-immune):hover {
+        border: 1px solid transparent;
+        background-color: #f79235;
+        color: white;
+    }
+    .account-btn.immune {
+        transition-property: color, border;
+        transition-duration: 0.5s;
+        color: #808080;
+        border: transparent;
+    }
+    .account-btn.active-immune {
+        transition-property: color, border;
+        transition-duration: 0.5s;
+        color: white;
+        background-color: #2196F3;
+        border: 1px solid #2196F3;
+    }
+    .active-immune {
+        border: 1px solid black;
+    }
+    .active-tab { 
+        transition: background-color 0.4s;
+        border: 1px solid transparent;
+        background-color: #263c79;
+        color: white;
+        font-weight: bold;
+    }
+    button.delete-me {
+        border-color: transparent;
+        position: relative;
+        background: #ff2121;
+        padding: 3px 20px 3px 15px;
+        color: white;
+    }
+    button.delete-me mat-icon {   
+        position: absolute; 
+        top: -8px;
+        right: 0px;
+    }
+    button.delete-me i {
+        font-size: 13px;
+        color: #313131;
+        opacity: 0.8;
+        font-weight: bold;
+    }
+    button.delete-me:hover {
+        background-color: transparent !important;
+        color: black !important;
+    }
+    button.delete-me:active {
+        transition: opacity 0.5s;
+        opacity: 0.2;
+    }
+    button.active .material-icons {
+        color: #ff2121;
+        opacity: 1 !important;
+    }
+    button.muted i {
+        transition: opacity 0.4s;
+        opacity: 0.1 !important;
+    }
+    #total {
+        width: 210px;
+        margin: 0;
+        text-align: center;
+        border-left: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        font-size: 32px;
+        font-weight: 700;
+    }
+    #navbar.collapsed-total {
+        transition: width 1s;
+        width: calc(1000px - 121px);
+    }
+    #total.collapsed-total {
+        transition: transform 1s 0.3s;
+        transform: scaleX(0);
+        display: none;
+    }
+    #total.collapsed-total p {
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    .glyphicon {
+        padding-right: 20px;
+        padding-top: 3px;
+    }
+    .glyphicon .material-icons {
+        font-size: 29px;
+    }
+    .glyphicon .material-icons:hover {
+        transition: transform 0.3s ease-in-out;
+        transform: rotate(45deg);
+        opacity: 1;
+    }
+
+    .accounts-panel {
+        max-height: 34px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    /* Slider */
+    #account-switches-container {
+        position: absolute;
+        right: 10%;
+        top: 17px;
+        display: block;
+        opacity: 0.7;
+        z-index: 100;
+    }
+    .counter {
+        font-family: 'Fira Sans';
+        font-weight: bold;
+        top: -9px;
+        margin-right: 15px;
+        position: relative;
+    }
+    #account-switches-container button {
+        background: transparent;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        cursor: pointer;
+    }
+    #account-switches-container i {
+        font-size: 32px;
+        position: relative;
+        color: #2a2a2a9a;
+        top: 2px;
+        right: 4px;
+    }
+    #account-switches-container button:hover {
+        transition: background-color 0.2s;
+        border: 1px solid transparent;
+        background-color: #ccc;
+    }
+    #account-switches-container i:hover {
+        color: black;
+    }
+    #account-switches-container button:active {
+        outline: none;
+        background: #f79235;
+        border: 1px solid transparent;
+    }
+    #account-switches-container i:active {
+        color: white;
+    }
+    #account-switches-container button:focus {
+        outline: none;
+    }
+    ::ng-deep .mat-tooltip {
+        background: #f3851ef1;
+        font-size: 11px;
+    }
+    #top-row-container {
+        display: flex;
+    }
+    #help-btn {
+        position: relative;
+        top: 8px;
+        right: 14px;
+        padding: 4px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        height: 100%;
+        align-self: center;
+    }
+    #help-btn:focus {
+        outline: none;
+    }
+    #help-btn i {
+        opacity: 0.5;
+    }
+    #help-btn:hover i {
+        opacity: 1;
+    }
+}
+
+/*@media (max-width: 767px) { /* less than iPad 
+    
+}*/
+@media (max-width: 1015px) { /* iPad and larger, but not large enough for normal viewport */
+    .mb-flex-header {
+        display: flex;
+        margin-bottom: 20px;
+    }
+    .mb-hamburger-container, .mb-help-container {
+        min-width: 36px;
+        width: 10%;
+        position: relative;
+        top: 16px;
+    }
+    .mb-flex-header button {
+        padding: 5px 10px;
+    }
+    .greeter {
+        width: 80%;
+        text-align: center;
+        color: #FF4716;
+    }
+    .mb-account-panel {
+        display: flex;
+    }
+    .mb-account-toolbar {
+        flex: 1 1 auto;
+        display: flex;
+        margin-left: 4px;
+    }
+    .mb-account-toolbar i{
+        font-size: 21px;
+    }
+    .mb-account-pills {
+        flex: 8 1 auto;
+        text-align: center;
+    }
+    .mb-account-pills button {
+        height: 24px;
+        margin-top: 13px;
+        margin-bottom: 13px;
+        padding: 2px 12px;
+        background: none;
+        border: 1px solid #ccc;
+        color: #ccc;
+        min-width: 85px;
+        cursor: pointer;
+    }
+    .mb-account-pills .active {
+        color: #595959;
+        font-weight: bold;
+        cursor: auto;
+    }
+    .mb-account-pills button:not(.active):hover {
+        text-decoration: underline;
+        color: #090909;
+    }
+    .mb-dropdown {
+        display: flex;
+        flex-direction: column;
+    }
+    .mb-dropdown.account-dropdown {
+        align-items: center;
+        min-width: 100px;
+        width: 20%;
+        margin: auto;
+        margin-top: 10px;
+        background-color: rgba(233, 233, 233, .7);
+        border: 4px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 7px;
+        position: relative;
+        left: 7px;
+        padding: 5px 0;
+    }
+    .account-dropdown button {
+        line-height: 2em;
+        background: white;
+        border: none;
+        color: #575757;
+        font-size: 16px;
+        width: 100%;
+        border-top: 1px solid #f2f2f2;
+        border-bottom: 1px solid #f2f2f2;
+    }
+    .account-dropdown button:hover {
+        background: #fb9e67;
+        color: white;
+        cursor: pointer;
+    }
+    .account-dropdown button.delete-list-item {
+        background-color: #ffbcc0b3;
+        color: #575757;
+    }
+    .account-dropdown button.delete-list-item:hover {
+        background: #e34654;
+        color: white;
+    }
+    #main-pill {
+        border-top-left-radius: 999px;
+        border-bottom-left-radius: 999px;
+    }
+    #another-pill {
+        border-top-right-radius: 999px;
+        border-bottom-right-radius: 999px;
+    }
+    .total {
+        flex: 1 1 auto;
+        min-width: 60px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 0.1em;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+    .mb-table-title {
+        font-weight: bold;
+        font-family: Cuprum;
+        text-align: center;
+        height: 25px;
+        padding-top: 25px;
+    }
+}
+
+.mobile-container {
     margin: 0 auto;
-    width: 1000px;
-    font-family: Lato;
-    overflow-y: hidden;
-}
-#toolbar {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 30px;
-}
-#controls {
-    text-align: right;
-    width: 120px;
-    margin-top: 63px;
-    border-bottom: 1px solid #cccccc90;
-    border-right: 1px solid #cccccc90;
-    vertical-align: bottom;
-    height: 40px;
-}
-#navbar {
-    width: calc(100% - 210px - 120px);
-    border-bottom: 1px solid #ccc;
-    position: relative;
-}
-#sidebar {
-    display: flex;
-    flex-direction: column;
-}
-user-profile {
-    position: relative;
-    top: 10px;
-}
-#greeter {
-    font-size: 20px;
-    font-weight: 700;
-    font-family: 'Fira Sans';
-    padding-left: 4.8%;
-    color: #FF4716;
-    z-index: 1;
-    width: 90%;
-}
-#username {
-    margin-left: 7px;
-}
-.accounts-panel {
-    padding: 2px 18px;
-    text-align: left;
-}
-.account-btn {
-    transition: background-color 0.4s;
-    font-family: 'Fira Sans';
-    padding: 3px 13px;
-    font-size: 17px;
-    border-radius: 18px;
-    border: 1px solid #ffcdb5;
-    margin-right: 5px;
-    background-color: white;
-    color: #808080;
-    cursor: pointer;
-    box-sizing: border-box;
-}
-.account-btn:not(.active-tab):not(.delete-me):not(.active-immune):hover {
-    border: 1px solid transparent;
-    background-color: #f79235;
-    color: white;
-}
-.account-btn.immune {
-    transition-property: color, border;
-    transition-duration: 0.5s;
-    color: #808080;
-    border: transparent;
-}
-.account-btn.active-immune {
-    transition-property: color, border;
-    transition-duration: 0.5s;
-    color: white;
-    background-color: #2196F3;
-    border: 1px solid #2196F3;
-}
-.active-immune {
-    border: 1px solid black;
-}
-.active-tab { 
-    transition: background-color 0.4s;
-    border: 1px solid transparent;
-    background-color: #263c79;
-    color: white;
-    font-weight: bold;
-}
-button.delete-me {
-    border-color: transparent;
-    position: relative;
-    background: #ff2121;
-    padding: 3px 20px 3px 15px;
-    color: white;
-}
-button.delete-me mat-icon {   
-    position: absolute; 
-    top: -8px;
-    right: 0px;
-}
-button.delete-me i {
-    font-size: 13px;
-    color: #313131;
-    opacity: 0.8;
-    font-weight: bold;
-}
-button.delete-me:hover {
-    background-color: transparent !important;
-    color: black !important;
-}
-button.delete-me:active {
-    transition: opacity 0.5s;
-    opacity: 0.2;
-}
-button.active .material-icons {
-    color: #ff2121;
-    opacity: 1 !important;
-}
-button.muted i {
-    transition: opacity 0.4s;
-    opacity: 0.1 !important;
-}
-#total {
-    width: 210px;
-    margin: 0;
-    text-align: center;
-    border-left: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    font-size: 32px;
-    font-weight: 700;
-}
-#navbar.collapsed-total {
-    transition: width 1s;
-    width: calc(1000px - 121px);
-}
-#total.collapsed-total {
-    transition: transform 1s 0.3s;
-    transform: scaleX(0);
-    display: none;
-}
-#total.collapsed-total p {
-    opacity: 0;
-    transition: opacity 0.3s;
+    width: 100%;
+    font-family: 'Fira sans';
 }
 .glyphicon {
     border: none;
     background-color: transparent;
     cursor: pointer;
-    padding-right: 20px;
-    padding-top: 3px;
-}
-.glyphicon .material-icons {
-    font-size: 29px;
-    opacity: 0.5;
-}
-.glyphicon .material-icons:hover {
-    transition: transform 0.3s ease-in-out;
-    transform: rotate(45deg);
-    opacity: 1;
 }
 .glyphicon:focus, .account-btn:focus {
     outline: none;
-}
-
-.accounts-panel {
-    max-height: 34px;
-    white-space: nowrap;
-    overflow: hidden;
-}
-/* Slider */
-#account-switches-container {
-    position: absolute;
-    right: 10%;
-    top: 17px;
-    display: block;
-    opacity: 0.7;
-    z-index: 100;
-}
-.counter {
-    font-family: 'Fira Sans';
-    font-weight: bold;
-    top: -9px;
-    margin-right: 15px;
-    position: relative;
-}
-#account-switches-container button {
-    background: transparent;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    cursor: pointer;
-}
-#account-switches-container i {
-    font-size: 32px;
-    position: relative;
-    color: #2a2a2a9a;
-    top: 2px;
-    right: 4px;
-}
-#account-switches-container button:hover {
-    transition: background-color 0.2s;
-    border: 1px solid transparent;
-    background-color: #ccc;
-}
-#account-switches-container i:hover {
-    color: black;
-}
-#account-switches-container button:active {
-    outline: none;
-    background: #f79235;
-    border: 1px solid transparent;
-}
-#account-switches-container i:active {
-    color: white;
-}
-#account-switches-container button:focus {
-    outline: none;
-}
-::ng-deep .mat-tooltip {
-    background: #f3851ef1;
-    font-size: 11px;
-}
-#top-row-container {
-    display: flex;
-}
-#help-btn {
-    position: relative;
-    top: 8px;
-    right: 14px;
-    padding: 4px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    height: 100%;
-    align-self: center;
-}
-#help-btn:focus {
-    outline: none;
-}
-#help-btn i {
+}    
+.glyphicon .material-icons {
     opacity: 0.5;
-}
-#help-btn:hover i {
-    opacity: 1;
-}
-
-@media (max-width: 767px) { /* less than iPad */
-
-}
-
-@media (max-width: 999px) { /* iPad and larger, but not large enough for normal viewport */
-
 }
