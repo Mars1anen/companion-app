@@ -1,0 +1,20 @@
+img {
+    max-width: 800px;
+    max-height: 630px;
+    height: 80%;
+    width: auto;
+}
+@media all and (max-width: 998px) {
+    img {      
+        max-width: 550px;
+        max-height:430px;
+        height: 90%; 
+    }
+}
+@media all and (max-width: 745px) {
+    img {      
+        max-width: 400px;
+        max-height:315px;
+        height: 90%; 
+    }
+}

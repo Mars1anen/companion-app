@@ -1,0 +1,28 @@
+<section #cont>
+  <h2 class="section-heading center">Работа с вложениями</h2>
+  <div class="body-text">
+    <div class="row">
+        <p>
+          <strong>Добавление</strong> вложений происходит схожим с добавлением элементов бюджета образом. 
+          Находясь в режиме отображения вложений и выбрав один из кошельков, нажмите на символ <i class="material-icons ng-tns-c1-0 icon-example">add</i>. 
+          В появившемся модальном окне введите описание вложения и прикрепите файл в формате <strong>jpeg</strong>, <strong>png</strong> или <strong>gif</strong>. 
+          Далее нажмите кнопку <strong>Подтвердить</strong> и вложение будет добавлено.   
+        </p>
+      </div>
+      <div class="row">
+        <aside class="help-aside">
+          <strong>Имейте в виду</strong>, что вложения будут отображены используя соотношение сторон 4:3. 
+          Поэтому если вы ходите видеть изображение полностью, убедитесь, что оно соответствует данному формату.
+        </aside>
+    </div>
+      <div class="row">
+          <p>
+            <strong>Удалить</strong> вложение также можно находясь в режиме отображения вложений. 
+            Для этого, выбрав соответствующий кошелёк, нажмите на символ <i class="material-icons ng-tns-c2-0 icon-example">delete</i>. 
+            В верхнем правом углу каждого из вложений появится символ <i class="material-icons ng-tns-c5-7 icon-example" style="font-size: 18px">highlight_off</i>. 
+            Нажав на него, вы удалите соответствующее вложение. 
+          </p>
+      </div>
+  </div>
+  <button (click)="toTop(cont)" matTooltip="Наверх"><mat-icon aria-hidden="true"><i class="material-icons">keyboard_arrow_up</i></mat-icon></button>
+</section>

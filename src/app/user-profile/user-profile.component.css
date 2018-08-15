@@ -1,0 +1,46 @@
+
+.glyphicon {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding-right: 20px;
+    padding-top: 3px;
+    position: relative;
+    right: -5px;
+}
+.glyphicon .material-icons {
+    font-size: 35px;
+    color: #3F51B5;
+}
+.glyphicon:not(.view-mode-btn) {
+    right: -8px;
+    position: absolute;
+}
+.glyphicon:not(.view-mode-btn) mat-icon {
+    transform: rotate(90deg);
+}
+.glyphicon .material-icons:hover {
+    transition: color 0.3s ease-in-out;
+    color: #2a2a2a;
+}
+.glyphicon:focus, .account-btn:focus {
+    outline: none;
+}
+.user-profile-btn-container {  
+    border-right: 1px solid #cccccc90;
+    position: absolute;
+    width: 80%;
+    padding-right: 20%;
+    justify-content: center;
+}
+.view-mode-btn {
+    float: left;
+    border: 1px solid #cccccc69;
+    border-radius: 5px;
+    padding: 3px 15px 3px 5px;
+    position: relative;
+    right: -14px;
+}
+.view-mode-btn i {
+    font-size: 33px;
+}
