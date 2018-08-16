@@ -54,3 +54,14 @@ body {
     transition: padding 0.2s ease-out; 
     padding: 10px 20px; 
 }
+@media all and (max-width: 1276px) {
+    .container {
+        width: 100%;
+    }
+}
+
+@media all and (max-width: 528px) {
+    #jumbotron {
+        width: 280px;
+    }
+}
