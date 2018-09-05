@@ -1,0 +1,27 @@
+<div class="switcher-container">
+  <h2>Выбор режима просмотра</h2>
+  <div id="mb-mode-switcher">
+    <!-- viewMode 1 -->
+    <div *ngIf="viewMode === 1">
+      <div class="switcher-row" (click)="setViewMode(1)">
+        <mat-icon><i class="material-icons">attach_money</i></mat-icon>
+        <span class="switcher-row-title switcher-current">Использовать текущий режим</span>
+      </div>
+      <div class="switcher-row available" (click)="setViewMode(2)">
+        <mat-icon><i class="material-icons">insert_photo</i></mat-icon>
+        <span class="switcher-row-title">Перейти к режиму просмотра вложений</span>
+      </div>
+    </div>
+    <!-- viewMode 2 -->
+    <div *ngIf="viewMode === 2">
+      <div class="switcher-row available" (click)="setViewMode(1)">
+          <mat-icon><i class="material-icons">attach_money</i></mat-icon>
+          <span class="switcher-row-title">Перейти к режиму просмотра бюджета</span>
+        </div>
+        <div class="switcher-row" (click)="setViewMode(2)">
+          <mat-icon><i class="material-icons">insert_photo</i></mat-icon>
+          <span class="switcher-row-title switcher-current">Использовать текущий режим</span>
+        </div>
+    </div>
+  </div>
+</div>

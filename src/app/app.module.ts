@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
+import { ResponsiveModule } from 'ng2-responsive';
 
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -45,6 +46,7 @@ import { PageFourComponent } from './modals/dialog-help/pages/page-four/page-fou
 import { PageFiveComponent } from './modals/dialog-help/pages/page-five/page-five.component';
 import { PageSixComponent } from './modals/dialog-help/pages/page-six/page-six.component';
 import { ImageViewerComponent } from './modals/image-viewer/image-viewer.component';
+import { MbChooseModeComponent } from './mb-choose-mode/mb-choose-mode.component';
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -76,7 +78,8 @@ const appRoutes: Routes = [
     PageFourComponent,
     PageFiveComponent,
     PageSixComponent,
-    ImageViewerComponent
+    ImageViewerComponent,
+    MbChooseModeComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +99,7 @@ const appRoutes: Routes = [
     MatIconModule,
     MatDialogModule,
     MatSnackBarModule,
+    ResponsiveModule,
     RouterModule.forRoot(
       appRoutes,
       //{ enableTracing: true } // Console.log route changes
@@ -109,14 +113,14 @@ const appRoutes: Routes = [
     ImgStorageService,
     SnackBarService,
     TimeToUnixService, 
-    AuthGuard, 
+    AuthGuard,
     {
-    provide: DateAdapter, useClass: AppDateAdapter
+      provide: DateAdapter, useClass: AppDateAdapter
     },
     {
     provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
     }],
   bootstrap: [AppComponent],
-  entryComponents: [DialogCreateAccountComponent, DialogCreateItemComponent, SnackBarComponent, DialogAddAttachmentComponent, DialogHelpComponent, ImageViewerComponent]
+  entryComponents: [DialogCreateAccountComponent, DialogCreateItemComponent, SnackBarComponent, DialogAddAttachmentComponent, DialogHelpComponent, ImageViewerComponent, MbChooseModeComponent]
 })
 export class AppModule { }

@@ -1,14 +1,14 @@
 <div class="container">
-  <h1 class="mh">Welcome to</h1>
+  <h1 class="mh">Добро пожаловать в</h1>
   <div id="jumbotron"></div>
   <div id="startup-body" *ngIf="userLoggedIn === true">
-    <p class="action-prompt">Do you want to continue working using your last logged account?</p>
-    <button routerLink="/{{user.name}}" class="btn-pill">Yes, continue as <strong><em>{{user.name}}.</em></strong></button>
-    <button (click)="changeUser()" class="btn-pill">No, I want to login as different user.</button>
+    <p class="action-prompt">Хотите войти, используя последний авторизованный аккаунт?</p>
+    <button routerLink="/{{user.name}}" class="btn-pill">Да, я продолжу как <strong><em>{{user.name}}.</em></strong></button>
+    <button (click)="changeUser()" class="btn-pill">Нет, я зайду под другим пользователем.</button>
   </div>
   <div id="startup-body" *ngIf="userLoggedIn === false">
-    <p class="action-prompt">To start working please login existing account or register a new one</p>
-    <button routerLink="/sign-in" class="btn-pill">I want to login an existing account.</button>
-    <button routerLink="/sign-up" class="btn-pill">I'll register a new one.</button>
+    <p class="action-prompt">Для начала работы пожалуйста войдите в существующий аккаунт или зарегистрируйте новый.</p>
+    <button routerLink="/sign-in" class="btn-pill">Я хочу войти в существующий аккаунт.</button>
+    <button routerLink="/sign-up" class="btn-pill">Я зарегистрирую новый.</button>
   </div>
 </div>
