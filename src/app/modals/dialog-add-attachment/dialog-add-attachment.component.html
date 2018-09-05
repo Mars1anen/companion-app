@@ -1,8 +1,0 @@
-<h3 class="modal-header">Добавить вложение</h3>
-<mat-form-field class="form-group" id="label-wrapper">
-  <input required ngModel matInput name="label" type="text" placeholder="Введите описание" #label>
-  <mat-error>Обязательное поле.</mat-error>
-</mat-form-field>
-<input ngModel required (change)="inputChanged($event)" id="attachment-input" name="attachment" type="file" #attachment>
-<button mat-raised-button [disabled]="!attachmentChosen || label.value.length == 0" (click)="submit(label.value)">Подтвердить</button>
-<div [hidden]="attachmentChosen" class="input-hint">Прикрепите файл в формате jpg, png или gif.</div>
