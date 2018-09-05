@@ -1,8 +1,8 @@
 <div class="form-wrapper">
-  <h3>Sign-up</h3>
+  <h3>Регистрация</h3>
   <form #f="ngForm" class="auth-form">
     <mat-form-field class="form-group">
-      <label for="username">Username:</label>
+      <label for="username">Имя пользователя:</label>
       <input ngModel matInput name="username" type="text">
     </mat-form-field>
     <mat-form-field class="form-group">
@@ -10,15 +10,15 @@
       <input ngModel matInput name="email" type="text">
     </mat-form-field>
     <mat-form-field class="form-group">
-      <label for="password">Password:</label>
-      <input ngModel matInput name="password" type="text">
+      <label for="password">Пароль:</label>
+      <input ngModel matInput name="password" type="password">
     </mat-form-field>
     <mat-form-field class="form-group">
-      <label for="c_password">Confirm Password:</label>
-      <input ngModel matInput name="c_password" type="text">
+      <label for="c_password">Подтвердите пароль:</label>
+      <input ngModel matInput name="c_password" type="password">
     </mat-form-field>
-  <button mat-raised-button color="primary" (click)="register(f)">Sign-up</button>
+  <button mat-raised-button color="primary" (click)="register(f)">Зарегистрировать</button>
   </form>
-  <p class="center"><a routerLink="/sign-in" class="app-link">Login as existing user.</a></p>
+  <p class="center"><a routerLink="/sign-in" class="app-link">Зайти, используя существующий аккаунт.</a></p>
 </div>
 
