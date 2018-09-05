@@ -1,20 +1,20 @@
-@angular/core@5.2.9
+@angular/common@5.2.8
 MIT
 MIT
 
-@angular/common@5.2.9
+@angular/platform-browser@5.2.8
 MIT
 MIT
 
-@angular/platform-browser@5.2.9
-MIT
-MIT
-
-@angular/router@5.2.9
+@angular/router@5.2.8
 MIT
 MIT
 
 angularfire2@5.0.0-rc.6
+MIT
+MIT
+
+@angular/core@5.2.8
 MIT
 MIT
 
@@ -66,15 +66,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-@angular/forms@5.2.9
+@angular/forms@5.2.8
 MIT
 MIT
 
-@angular/animations@5.2.9
+@angular/animations@5.2.8
 MIT
 MIT
 
-css-loader@0.28.11
+css-loader@0.28.10
 MIT
 Copyright JS Foundation and other contributors
 
@@ -96,6 +96,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ng2-responsive@0.8.4
+MIT
+MIT
 
 events@1.1.1
 MIT
@@ -122,7 +126,7 @@ DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-@angular/platform-browser-dynamic@5.2.9
+@angular/platform-browser-dynamic@5.2.8
 MIT
 MIT
 
